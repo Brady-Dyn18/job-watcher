@@ -1,8 +1,8 @@
 {
-  "run_time": "2026-11-25T23:06:47.514105Z",
+  "run_time": "2026-11-25T23:12:02.911024Z",
   "first_run_date": "2026-11-25",
   "days_with_success": 1,
-  "open": 8822,
+  "open": 8856,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
@@ -169,11 +169,10 @@
       "last_successful_run": "2026-11-25"
     },
     {
-      "name": "Wells Fargo",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://wf.wd1.myworkdayjobs.com/wday/cxs/wf/WellsFargoJobs/jobs",
-      "last_successful_run": ""
+      "name": "Marqeta",
+      "ok": true,
+      "count": 34,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Amazon",
