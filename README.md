@@ -4,6 +4,8 @@
 
 Finance Job Watcher is a daily, entry-level finance job tracker. It reads public applicant-tracking-system JSON feeds, saves compressed snapshots, rebuilds a deterministic history, opens a daily GitHub Issue with changes, and publishes an offline-ready GitHub Pages site.
 
+**Live site:** [Open Finance Job Watcher](https://brady-dyn18.github.io/job-watcher/)
+
 ## Watch list
 
 The project watches 19 employers through public, no-login JSON endpoints. The current live validation returned fewer than 5,000 postings for every source, so no source needs an API search term.
