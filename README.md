@@ -8,7 +8,7 @@ Finance Job Watcher is a daily, entry-level finance job tracker. It reads public
 
 ## Watch list
 
-The project watches 19 employers through public, no-login JSON endpoints. The current live validation returned fewer than 5,000 postings for every source, so no source needs an API search term.
+The project watches 23 employers through public, no-login JSON endpoints. The enabled searches return fewer than 5,000 postings per source; Amazon and the Workday boards use documented finance search terms to keep the feed focused and paginable.
 
 | Employer | ATS | Public JSON endpoint |
 | --- | --- | --- |
@@ -31,6 +31,10 @@ The project watches 19 employers through public, no-login JSON endpoints. The cu
 | Samsara | Greenhouse | `boards-api.greenhouse.io/v1/boards/samsara/jobs?content=true` |
 | Asana | Greenhouse | `boards-api.greenhouse.io/v1/boards/asana/jobs?content=true` |
 | Palantir | Lever | `api.lever.co/v0/postings/palantir?mode=json` |
+| Bank of America | Workday | `ghr.wd1.myworkdayjobs.com/wday/cxs/ghr/Lateral-US/jobs` |
+| Capital One | Workday | `capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs` |
+| Wells Fargo | Workday | `wf.wd1.myworkdayjobs.com/wday/cxs/wf/WellsFargoJobs/jobs` |
+| Amazon | Amazon Jobs JSON | `amazon.jobs/en/search.json?base_query=finance` |
 
 Greenhouse's public job-board API, Lever's public Postings API, and Ashby's public Job Postings API are used directly. The pipeline never reads the HTML of a job board and does not require login credentials.
 
@@ -41,6 +45,11 @@ The entry-level role rule marks a posting `in_role=true` when its title contains
 - Financial Analyst
 - Junior Financial Analyst
 - FP&A Analyst
+- Financial Planning Analyst
+- Business Finance Analyst
+- Sales Finance Analyst
+- Corporate Finance Analyst
+- Finance Operations Analyst
 - Finance Rotational Analyst
 - Treasury Analyst
 - Credit Analyst
@@ -57,14 +66,14 @@ The history is rebuilt from raw snapshots alone. The deterministic command is:
 uv run python -m job_watcher.build_history --base-dir .
 ```
 
-`data/history.csv` has one row per posting, sorted by `posting_id`, with the exact rubric columns. `data/status.json` describes the latest run, source health, and counts. Reappearing postings are reopened with their original `first_seen` date; missing open postings are removed only when their source has a raw snapshot for that day.
+`data/history.csv` has one row per posting, sorted by `posting_id`, with the exact rubric columns. `data/details.json` stores optional salary, schedule, and workplace metadata separately so the rubric CSV stays unchanged. `data/status.json` describes the latest run, source health, and counts. Reappearing postings are reopened with their original `first_seen` date; missing open postings are removed only when their source has a raw snapshot for that day.
 
-When GitHub credentials are available, the pipeline opens or updates an issue titled with the UTC date, lists new and removed postings with links, and closes the previous day's issue. GitHub Actions commits the raw files, history, and status files after each run.
+When GitHub credentials are available, the pipeline opens or updates an issue titled with the UTC date, lists new and removed postings with links, and closes the previous day's issue. GitHub Actions commits the raw files, history, details, and status files after each run.
 
 ## Site
 
 - `index.html` is the Today page with run time, source health, four status counts, and new/removed lists.
-- `browse.html` is the Browse page with role/all toggle, employer/location/days-open filters, title search, first-seen sorting, apply links, and browser-persisted shortlist stars.
+- `browse.html` is the Browse page with role/all toggle, employer/location/state/days-open/workplace/schedule/posted-date/salary filters, title search, sorting, apply links, freshness/availability labels, saved filter preferences, and browser-persisted shortlist stars.
 - Browse is U.S.-only and includes a 15-employer directory linking to current official finance and corporate job boards, with the entry-level role names shown for each employer.
 - `market.html` is the Market page. It calculates all six rubric sections in the browser from `data/history.csv` and renders charts without an external chart library.
 - `manifest.webmanifest` and `service-worker.js` make the site installable. Data requests are network-first online and cached for offline use.
@@ -76,7 +85,7 @@ Enable GitHub Pages with the **GitHub Actions** source. The Pages workflow publi
 | File | Purpose |
 | --- | --- |
 | `job_watcher/config.py` | Employer list, ATS configuration, role names, and title-rule description. |
-| `job_watcher/normalize.py` | Greenhouse, Lever, and Ashby JSON adapters plus common-column conversion. |
+| `job_watcher/normalize.py` | Greenhouse, Lever, Ashby, Workday, and Amazon JSON adapters plus common-column conversion. |
 | `job_watcher/history.py` | Raw-file discovery, deterministic history logic, CSV writing, and history loading. |
 | `job_watcher/pipeline.py` | Daily fetch, compressed raw snapshots, history/status output, and run orchestration. |
 | `job_watcher/github_issues.py` | Daily Issue creation/update and previous-Issue closing. |
@@ -86,6 +95,7 @@ Enable GitHub Pages with the **GitHub Actions** source. The Pages workflow publi
 | `data/raw/` | Compressed daily source snapshots. |
 | `data/history.csv` | Fixed-path posting history. |
 | `data/status.json` | Fixed-path latest-run status and source health. |
+| `data/details.json` | Optional salary, schedule, and workplace metadata keyed by posting ID. |
 | `index.html` | Today page. |
 | `browse.html` | Browse and shortlist page. |
 | `market.html` | Browser-calculated market report. |

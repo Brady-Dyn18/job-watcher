@@ -68,6 +68,7 @@ h2 { margin-bottom: 0; color: var(--navy); font-family: Georgia, "Times New Roma
 .job-title { display: block; font-size: 14px; font-weight: 750; }
 .job-meta { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
 .empty { display: grid; min-height: 92px; place-items: center; border: 1px dashed var(--line); border-radius: 11px; color: var(--muted); font-size: 13px; }
+.browse-empty { gap: 6px; padding: 20px; text-align: center; }
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th { padding: 10px 12px; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-align: left; text-transform: uppercase; }
@@ -81,9 +82,11 @@ td { padding: 13px 12px; border-top: 1px solid var(--line); }
 .filter-panel { margin-bottom: 24px; }
 .market-filter-panel { margin-bottom: 24px; }
 .market-filter-row { display: grid; grid-template-columns: minmax(220px, 360px) minmax(220px, 360px); gap: 14px; }
-.filter-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr .7fr 1.25fr 1fr; align-items: end; gap: 12px; }
+.filter-row { display: grid; grid-template-columns: 1.25fr 1fr 1fr .7fr 1fr 1fr 1fr 1fr 1.25fr 1fr auto; align-items: end; gap: 12px; }
 label { display: grid; gap: 6px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 select, input[type="search"], input[type="number"] { width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: #fff; font: inherit; font-size: 13px; letter-spacing: normal; text-transform: none; }
+button.reset-button { min-height: 40px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--navy); background: #f5f7fb; cursor: pointer; font: inherit; font-size: 12px; font-weight: 750; white-space: nowrap; }
+button.reset-button:hover { border-color: #a8c9c5; color: var(--teal); background: var(--teal-soft); }
 select:focus, input:focus { outline: 3px solid rgba(14,140,130,.16); border-color: var(--teal); }
 .switch-label { display: flex; align-items: center; gap: 9px; min-height: 40px; color: var(--ink); font-size: 13px; letter-spacing: 0; text-transform: none; }
 .switch-label input { position: absolute; opacity: 0; }
@@ -91,7 +94,7 @@ select:focus, input:focus { outline: 3px solid rgba(14,140,130,.16); border-colo
 .switch::after { position: absolute; top: 3px; left: 3px; width: 17px; height: 17px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.2); content: ""; transition: .2s; }
 .switch-label input:checked + .switch { background: var(--teal); }
 .switch-label input:checked + .switch::after { transform: translateX(17px); }
-.filter-summary { display: flex; align-items: center; gap: 7px; margin-top: 18px; color: var(--muted); font-size: 13px; }
+.filter-summary { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-top: 18px; color: var(--muted); font-size: 13px; }
 .filter-summary strong { color: var(--navy); }
 .separator { color: #b7c0ce; }
 .us-badge { color: #08736d; font-weight: 750; }

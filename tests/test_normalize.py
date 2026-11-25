@@ -77,6 +77,56 @@ def test_entry_level_title_rule():
     assert title_in_role("Finance Rotational Analyst")
     assert title_in_role("Treasury Analyst - Entry Level")
     assert title_in_role("Credit Analyst, Finance")
+    assert title_in_role("Financial Planning Analyst")
+    assert title_in_role("Business Finance Analyst")
+    assert title_in_role("Finance Operations Analyst")
     assert not title_in_role("Senior Financial Analyst")
     assert not title_in_role("Finance Manager")
     assert not title_in_role("Financial Analyst Intern")
+
+
+def test_workday_conversion_to_common_columns():
+    row = normalize_payload(
+        source("capital-one"),
+        {
+            "jobPostings": [
+                {
+                    "title": "Financial Planning Analyst",
+                    "externalPath": "/job/McLean-VA/Financial-Planning-Analyst_R1",
+                    "timeType": "Full time",
+                    "locationsText": "McLean, VA",
+                    "postedOn": "Posted Today",
+                    "bulletFields": ["R1"],
+                }
+            ]
+        },
+    )[0]
+    assert row["posting_id"] == "capital-one:R1"
+    assert row["url"].endswith("/Capital_One/job/McLean-VA/Financial-Planning-Analyst_R1")
+    assert row["employment_type"] == "Full time"
+    assert row["in_role"] is True
+
+
+def test_amazon_conversion_extracts_salary_and_workplace():
+    row = normalize_payload(
+        source("amazon"),
+        {
+            "jobs": [
+                {
+                    "id": "amazon-1",
+                    "title": "Financial Analyst",
+                    "job_path": "/en/jobs/amazon-1/financial-analyst",
+                    "normalized_location": "Seattle, Washington, USA",
+                    "job_category": "Finance & Accounting",
+                    "job_schedule_type": "full-time",
+                    "posted_date": "October 23, 2026",
+                    "locations": ['{"type":"HYBRID"}'],
+                    "description": "Base salary range: 73,600 - 128,800 USD annually",
+                }
+            ]
+        },
+    )[0]
+    assert row["posted_date"] == "2026-10-23"
+    assert row["workplace_type"] == "Hybrid"
+    assert row["salary_min"] == 73600.0
+    assert row["salary_max"] == 128800.0

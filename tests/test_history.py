@@ -2,7 +2,7 @@ import gzip
 import json
 
 from job_watcher.config import SOURCES
-from job_watcher.history import build_history_rows, write_history
+from job_watcher.history import build_details, build_history_rows, write_history
 
 
 def source(slug: str):
@@ -66,3 +66,27 @@ def test_history_is_sorted_and_reproducible(tmp_path):
     second = build_history_rows(raw)
     assert [row["posting_id"] for row in first] == ["stripe:10", "stripe:20"]
     assert first == second
+
+
+def test_optional_details_are_separate_from_rubric_history_columns(tmp_path):
+    raw = tmp_path / "raw"
+    write_snapshot(
+        raw,
+        "2026-02-01",
+        "amazon",
+        {
+            "jobs": [
+                {
+                    "id": "a-1",
+                    "title": "Financial Analyst",
+                    "job_path": "/en/jobs/a-1/financial-analyst",
+                    "location": "US, NY, New York",
+                    "posted_date": "February 1, 2026",
+                    "description": "73,600 - 128,800 USD annually",
+                }
+            ]
+        },
+    )
+    details = build_details(raw)
+    assert details["amazon:a-1"]["salary_min"] == 73600.0
+    assert details["amazon:a-1"]["salary_currency"] == "USD"

@@ -88,13 +88,31 @@ def build_history_rows(raw_root: Path) -> list[dict[str, Any]]:
 def write_history(rows: Iterable[dict[str, Any]], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=COMMON_COLUMNS)
+        writer = csv.DictWriter(stream, fieldnames=COMMON_COLUMNS, lineterminator="\n")
         writer.writeheader()
         for row in sorted(rows, key=lambda item: item["posting_id"]):
             output = {column: row.get(column, "") for column in COMMON_COLUMNS}
             output["in_role"] = str(bool(row["in_role"])).lower()
             output["first_run"] = str(bool(row["first_run"])).lower()
             writer.writerow(output)
+
+
+def build_details(raw_root: Path) -> dict[str, dict[str, Any]]:
+    """Build optional display metadata without changing the rubric CSV schema."""
+
+    details: dict[str, dict[str, Any]] = {}
+    for _day, source, path in raw_files(raw_root):
+        for row in normalize_payload(source, read_raw(path)):
+            details[row["posting_id"]] = {
+                key: row.get(key, "")
+                for key in ("employment_type", "workplace_type", "salary_min", "salary_max", "salary_currency")
+            }
+    return {key: details[key] for key in sorted(details)}
+
+
+def write_details(details: dict[str, dict[str, Any]], output_path: Path) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(details, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def load_history(history_path: Path) -> list[dict[str, str]]:
