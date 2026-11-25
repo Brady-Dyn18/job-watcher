@@ -19298,13 +19298,6 @@
     "salary_min": "",
     "workplace_type": "On-site"
   },
-  "amazon:c6f9aeaf-8ea9-407d-84f1-2d5736167139": {
-    "employment_type": "full-time",
-    "salary_currency": "USD",
-    "salary_max": 117100.0,
-    "salary_min": 82700.0,
-    "workplace_type": "On-site"
-  },
   "amazon:c750313c-1096-4e03-869a-a1fa299185bd": {
     "employment_type": "full-time",
     "salary_currency": "",
@@ -21347,13 +21340,6 @@
     "salary_currency": "",
     "salary_max": "",
     "salary_min": "",
-    "workplace_type": "On-site"
-  },
-  "amazon:de33c1f8-dea7-49ea-9d3e-c5f2db90b495": {
-    "employment_type": "full-time",
-    "salary_currency": "USD",
-    "salary_max": 119100.0,
-    "salary_min": 80200.0,
     "workplace_type": "On-site"
   },
   "amazon:de4875af-1eb3-49aa-b5f9-e04caeea2c23": {
@@ -26690,6 +26676,13 @@
     "salary_min": 207920.0,
     "workplace_type": ""
   },
+  "brex:8962934002": {
+    "employment_type": "",
+    "salary_currency": "USD",
+    "salary_max": 143510.0,
+    "salary_min": 114808.0,
+    "workplace_type": ""
+  },
   "brex:8962960002": {
     "employment_type": "",
     "salary_currency": "USD",
@@ -26702,6 +26695,34 @@
     "salary_currency": "USD",
     "salary_max": 230000.0,
     "salary_min": 184000.0,
+    "workplace_type": ""
+  },
+  "brex:8963004002": {
+    "employment_type": "",
+    "salary_currency": "USD",
+    "salary_max": 143510.0,
+    "salary_min": 114808.0,
+    "workplace_type": ""
+  },
+  "brex:8963006002": {
+    "employment_type": "",
+    "salary_currency": "USD",
+    "salary_max": 143510.0,
+    "salary_min": 114808.0,
+    "workplace_type": ""
+  },
+  "brex:8963008002": {
+    "employment_type": "",
+    "salary_currency": "USD",
+    "salary_max": 127000.0,
+    "salary_min": 101600.0,
+    "workplace_type": ""
+  },
+  "brex:8963009002": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": ""
   },
   "chime:8342899002": {
@@ -26726,13 +26747,6 @@
     "workplace_type": ""
   },
   "chime:8526680002": {
-    "employment_type": "",
-    "salary_currency": "",
-    "salary_max": "",
-    "salary_min": "",
-    "workplace_type": ""
-  },
-  "chime:8529549002": {
     "employment_type": "",
     "salary_currency": "",
     "salary_max": "",
@@ -45240,13 +45254,6 @@
     "salary_min": "",
     "workplace_type": ""
   },
-  "robinhood:8189213": {
-    "employment_type": "",
-    "salary_currency": "",
-    "salary_max": "",
-    "salary_min": "",
-    "workplace_type": ""
-  },
   "robinhood:8189867": {
     "employment_type": "",
     "salary_currency": "",
@@ -45801,6 +45808,13 @@
     "workplace_type": ""
   },
   "robinhood:8354333": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "robinhood:8355577": {
     "employment_type": "",
     "salary_currency": "",
     "salary_max": "",
@@ -47844,6 +47858,13 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "samsara:8384192": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "samsara:8386261": {
     "employment_type": "",
     "salary_currency": "",
@@ -48034,6 +48055,13 @@
     "workplace_type": ""
   },
   "samsara:8415151": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "samsara:8415782": {
     "employment_type": "",
     "salary_currency": "",
     "salary_max": "",
@@ -56347,6 +56375,286 @@
     "salary_currency": "USD",
     "salary_max": 138125.0,
     "salary_min": 110500.0,
+    "workplace_type": ""
+  },
+  "wells-fargo:R-565758": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-568597": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-571146": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-572194": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-573555": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-578941": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-579980": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-580417": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-580727": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-581159": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-581970": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-584471": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-584479": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-584708": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586044": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586071": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586092": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586099": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586100": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586204": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586319": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586768": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586793": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586916": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-586931": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587015": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587058": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587070": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587178": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587195": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587252": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587294": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587300": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-587430": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-588057": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-588109": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-588656": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-588721": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-588822": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "wells-fargo:R-588881": {
+    "employment_type": "",
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": ""
   }
 }

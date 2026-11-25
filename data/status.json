@@ -1,15 +1,15 @@
 {
-  "run_time": "2026-11-25T18:59:43.645382Z",
+  "run_time": "2026-11-25T20:47:31.110366Z",
   "first_run_date": "2026-11-25",
   "days_with_success": 1,
-  "open": 5020,
+  "open": 8094,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
     {
       "name": "Ramp",
       "ok": true,
-      "count": 182
+      "count": 183
     },
     {
       "name": "Notion",
@@ -19,7 +19,7 @@
     {
       "name": "OpenAI",
       "ok": true,
-      "count": 877
+      "count": 876
     },
     {
       "name": "Linear",
@@ -29,17 +29,17 @@
     {
       "name": "Stripe",
       "ok": true,
-      "count": 773
+      "count": 772
     },
     {
       "name": "Datadog",
       "ok": true,
-      "count": 390
+      "count": 391
     },
     {
       "name": "Coinbase",
       "ok": true,
-      "count": 245
+      "count": 246
     },
     {
       "name": "Affirm",
@@ -49,7 +49,7 @@
     {
       "name": "Toast",
       "ok": true,
-      "count": 302
+      "count": 301
     },
     {
       "name": "Twilio",
@@ -64,17 +64,17 @@
     {
       "name": "Airbnb",
       "ok": true,
-      "count": 199
+      "count": 200
     },
     {
       "name": "Brex",
       "ok": true,
-      "count": 261
+      "count": 269
     },
     {
       "name": "Chime",
       "ok": true,
-      "count": 78
+      "count": 77
     },
     {
       "name": "Pinterest",
@@ -89,7 +89,7 @@
     {
       "name": "Samsara",
       "ok": true,
-      "count": 294
+      "count": 296
     },
     {
       "name": "Asana",
@@ -100,6 +100,28 @@
       "name": "Palantir",
       "ok": true,
       "count": 305
+    },
+    {
+      "name": "Bank of America",
+      "ok": false,
+      "count": 0,
+      "error": "429 Client Error: Too Many Requests for url: https://ghr.wd1.myworkdayjobs.com/wday/cxs/ghr/Lateral-US/jobs"
+    },
+    {
+      "name": "Capital One",
+      "ok": false,
+      "count": 0,
+      "error": "429 Client Error: Too Many Requests for url: https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs"
+    },
+    {
+      "name": "Wells Fargo",
+      "ok": true,
+      "count": 40
+    },
+    {
+      "name": "Amazon",
+      "ok": true,
+      "count": 3024
     }
   ]
 }
