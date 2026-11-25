@@ -79,6 +79,8 @@ td { padding: 13px 12px; border-top: 1px solid var(--line); }
 .notice.error { color: #8a2b1b; background: var(--coral-soft); }
 .hidden { display: none !important; }
 .filter-panel { margin-bottom: 24px; }
+.market-filter-panel { margin-bottom: 24px; }
+.market-filter-row { display: grid; grid-template-columns: minmax(220px, 360px) minmax(220px, 360px); gap: 14px; }
 .filter-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr .7fr 1.25fr 1fr; align-items: end; gap: 12px; }
 label { display: grid; gap: 6px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 select, input[type="search"], input[type="number"] { width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: #fff; font: inherit; font-size: 13px; letter-spacing: normal; text-transform: none; }
@@ -118,4 +120,4 @@ select:focus, input:focus { outline: 3px solid rgba(14,140,130,.16); border-colo
 .footer { display: flex; justify-content: space-between; gap: 20px; padding: 0 0 28px; color: #8a95a6; font-size: 12px; }
 @media (max-width: 1050px) { .focus-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 900px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } .filter-row { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 680px) { .shell { width: min(100% - 28px, 560px); } .nav-wrap, .hero { align-items: start; flex-direction: column; } .nav-wrap { padding: 14px 0; gap: 12px; } nav { width: 100%; } nav a { flex: 1; text-align: center; } .page-content { padding-top: 32px; } .run-card { width: 100%; } .metric-grid, .two-column, .browse-grid, .market-sections, .focus-grid { grid-template-columns: 1fr; } .market-section.wide { grid-column: auto; } .filter-row { grid-template-columns: 1fr 1fr; } .filter-row .switch-label, .filter-row .search-label { grid-column: 1 / -1; } .panel { padding: 18px; } }
+@media (max-width: 680px) { .shell { width: min(100% - 28px, 560px); } .nav-wrap, .hero { align-items: start; flex-direction: column; } .nav-wrap { padding: 14px 0; gap: 12px; } nav { width: 100%; } nav a { flex: 1; text-align: center; } .page-content { padding-top: 32px; } .run-card { width: 100%; } .metric-grid, .two-column, .browse-grid, .market-sections, .focus-grid { grid-template-columns: 1fr; } .market-section.wide { grid-column: auto; } .market-filter-row, .filter-row { grid-template-columns: 1fr 1fr; } .filter-row .switch-label, .filter-row .search-label { grid-column: 1 / -1; } .panel { padding: 18px; } }

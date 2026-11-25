@@ -20,6 +20,9 @@ const FOCUS_EMPLOYERS = [
   { name: "United Airlines", group: "Corporate finance", url: "https://careers.united.com/us/en/search-results", roles: ["Financial Analyst", "FP&A Analyst", "Treasury Analyst"] },
   { name: "McDonald's", group: "Corporate finance", url: "https://careers.mcdonalds.com/", roles: ["Financial Analyst", "FP&A Analyst", "Finance Rotational Analyst"] },
 ];
+const US_STATES = [
+  ["Alabama", "AL"], ["Alaska", "AK"], ["Arizona", "AZ"], ["Arkansas", "AR"], ["California", "CA"], ["Colorado", "CO"], ["Connecticut", "CT"], ["Delaware", "DE"], ["Florida", "FL"], ["Georgia", "GA"], ["Hawaii", "HI"], ["Idaho", "ID"], ["Illinois", "IL"], ["Indiana", "IN"], ["Iowa", "IA"], ["Kansas", "KS"], ["Kentucky", "KY"], ["Louisiana", "LA"], ["Maine", "ME"], ["Maryland", "MD"], ["Massachusetts", "MA"], ["Michigan", "MI"], ["Minnesota", "MN"], ["Mississippi", "MS"], ["Missouri", "MO"], ["Montana", "MT"], ["Nebraska", "NE"], ["Nevada", "NV"], ["New Hampshire", "NH"], ["New Jersey", "NJ"], ["New Mexico", "NM"], ["New York", "NY"], ["North Carolina", "NC"], ["North Dakota", "ND"], ["Ohio", "OH"], ["Oklahoma", "OK"], ["Oregon", "OR"], ["Pennsylvania", "PA"], ["Rhode Island", "RI"], ["South Carolina", "SC"], ["South Dakota", "SD"], ["Tennessee", "TN"], ["Texas", "TX"], ["Utah", "UT"], ["Vermont", "VT"], ["Virginia", "VA"], ["Washington", "WA"], ["West Virginia", "WV"], ["Wisconsin", "WI"], ["Wyoming", "WY"], ["District of Columbia", "DC"],
+];
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
@@ -96,6 +99,15 @@ function isUnitedStatesLocation(location) {
   if (/\b(united states|u\.s\.a?\.?|usa|remote\s*\(?us\)?|us\s*remote)\b/i.test(value)) return true;
   const tokens = value.toUpperCase().replace(/[^A-Z\s]/g, " ").split(/\s+/).filter(Boolean);
   return tokens.some((token) => US_STATE_CODES.has(token));
+}
+
+function matchesMarketLocation(location, selected) {
+  if (!selected || selected === "__US__") return isUnitedStatesLocation(location);
+  const state = US_STATES.find(([name]) => name === selected);
+  if (!state) return true;
+  const value = String(location || "").toUpperCase();
+  const tokens = value.replace(/[^A-Z\s]/g, " ").split(/\s+/).filter(Boolean);
+  return value.includes(state[0].toUpperCase()) || tokens.includes(state[1]);
 }
 
 function rowLink(row) {
@@ -196,6 +208,10 @@ function sortedKeys(counts) { return Object.keys(counts).sort((a, b) => counts[b
 
 function renderMarket() {
   setText("last-run", dataThrough());
+  const employerFilter = document.getElementById("market-employer-filter");
+  const locationFilter = document.getElementById("market-location-filter");
+  employerFilter.innerHTML = `<option value="">All employers</option>${FOCUS_EMPLOYERS.map((company) => `<option value="${escapeHtml(company.name)}">${escapeHtml(company.name)}</option>`).join("")}`;
+  locationFilter.innerHTML = `<option value="__US__">United States</option>${US_STATES.map(([name]) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("")}`;
   document.getElementById("market-sections").innerHTML = [
     marketSection("new-per-day", "New postings arrive in waves", "First-run postings are left out because their true start date is unknown."),
     marketSection("removed-per-day", "Removals show when opportunity windows close", "Every posting removed on a source snapshot contributes to the day it disappeared."),
@@ -204,30 +220,35 @@ function renderMarket() {
     marketSection("within-seven", "Early removals reveal how quickly roles can disappear", "The share uses postings observed at least seven days before the latest run and counts removal within seven days."),
     marketSection("top-locations", "Open roles cluster in a few hiring markets", "Locations are counted among open postings, with missing locations grouped as Unlisted.", "wide"),
   ].join("");
-  const roleRows = state.rows.filter((row) => isTrue(row.in_role));
-  const historical = state.rows.filter((row) => !isTrue(row.first_run));
+  const update = () => {
+    const employer = employerFilter.value;
+    const location = locationFilter.value;
+    const rows = state.rows.filter((row) => (!employer || row.employer === employer) && matchesMarketLocation(row.location, location));
+    setText("market-filter-summary", `${location === "__US__" ? "United States" : location} · ${employer || "All employers"}`);
+    const roleRows = rows.filter((row) => isTrue(row.in_role));
+    const historical = rows.filter((row) => !isTrue(row.first_run));
   const newDays = Object.keys(countsBy(historical.filter((row) => row.first_seen), "first_seen")).sort();
   const roleCounts = countsBy(roleRows.filter((row) => !isTrue(row.first_run) && row.first_seen), "first_seen");
   const allCounts = countsBy(historical.filter((row) => row.first_seen), "first_seen");
   drawGroupedBars(document.getElementById("new-per-day-chart"), newDays, [{ name: "All", values: newDays.map((day) => allCounts[day] || 0), color: "#1f385e" }, { name: "Role", values: newDays.map((day) => roleCounts[day] || 0), color: "#0e8c82" }]);
   setText("new-per-day-paragraph", `${historical.filter((row) => row.first_seen).length} non-first-run postings were first seen across ${newDays.length} day${newDays.length === 1 ? "" : "s"}; ${roleRows.filter((row) => !isTrue(row.first_run) && row.first_seen).length} matched the entry-level finance title rule.`);
 
-  const removedCounts = countsBy(state.rows.filter((row) => row.removed_date), "removed_date");
+  const removedCounts = countsBy(rows.filter((row) => row.removed_date), "removed_date");
   const removedDays = Object.keys(removedCounts).sort();
   drawGroupedBars(document.getElementById("removed-per-day-chart"), removedDays.length ? removedDays : ["None"], [{ name: "Removed", values: removedDays.length ? removedDays.map((day) => removedCounts[day]) : [0], color: "#d66a50" }]);
-  setText("removed-per-day-paragraph", `${state.rows.filter((row) => row.removed_date).length} postings have been removed across ${removedDays.length} day${removedDays.length === 1 ? "" : "s"}.`);
+  setText("removed-per-day-paragraph", `${rows.filter((row) => row.removed_date).length} postings have been removed across ${removedDays.length} day${removedDays.length === 1 ? "" : "s"}.`);
 
-  const openRows = state.rows.filter((row) => row.status === "open"), employerCounts = countsBy(openRows, "employer"), employers = sortedKeys(employerCounts).slice(0, 15);
+  const openRows = rows.filter((row) => row.status === "open"), employerCounts = countsBy(openRows, "employer"), employers = sortedKeys(employerCounts).slice(0, 15);
   drawGroupedBars(document.getElementById("open-employer-chart"), employers.length ? employers : ["None"], [{ name: "Open", values: employers.length ? employers.map((name) => employerCounts[name]) : [0], color: "#1f385e" }]);
   setText("open-employer-paragraph", `${openRows.length} postings remain open. ${employers.length ? `${employers[0]} has the most with ${employerCounts[employers[0]]}.` : "No open postings are available yet."}`);
 
-  const daysOpen = state.rows.filter((row) => row.removed_date && !isTrue(row.first_run)).map((row) => dateDiff(row.first_seen, row.removed_date)).filter((value) => value !== null && value >= 0).sort((a, b) => a - b);
+  const daysOpen = rows.filter((row) => row.removed_date && !isTrue(row.first_run)).map((row) => dateDiff(row.first_seen, row.removed_date)).filter((value) => value !== null && value >= 0).sort((a, b) => a - b);
   const median = daysOpen.length ? (daysOpen.length % 2 ? daysOpen[(daysOpen.length - 1) / 2] : (daysOpen[daysOpen.length / 2 - 1] + daysOpen[daysOpen.length / 2]) / 2) : 0;
   drawGroupedBars(document.getElementById("days-open-chart"), ["Median days"], [{ name: "Days", values: [median], color: "#b7791f" }]);
   setText("days-open-paragraph", daysOpen.length ? `The median observed open window is ${median} day${median === 1 ? "" : "s"}, based on ${daysOpen.length} removed non-first-run postings.` : "There are not enough removed non-first-run postings to calculate this median yet.");
 
   const last = dataThrough();
-  const eligible = state.rows.filter((row) => !isTrue(row.first_run) && dateDiff(row.first_seen, last) >= 7);
+  const eligible = rows.filter((row) => !isTrue(row.first_run) && dateDiff(row.first_seen, last) >= 7);
   const fastRemoved = eligible.filter((row) => row.removed_date && dateDiff(row.first_seen, row.removed_date) <= 7).length;
   const slowerOrOpen = eligible.length - fastRemoved;
   drawGroupedBars(document.getElementById("within-seven-chart"), ["Eligible postings"], [{ name: "Within 7 days", values: [fastRemoved], color: "#d66a50" }, { name: "Other/open", values: [slowerOrOpen], color: "#dfe5ee" }]);
@@ -236,6 +257,10 @@ function renderMarket() {
   const locationCounts = countsBy(openRows, "location"), locations = sortedKeys(locationCounts).slice(0, 15);
   drawGroupedBars(document.getElementById("top-locations-chart"), locations.length ? locations : ["None"], [{ name: "Open", values: locations.length ? locations.map((location) => locationCounts[location]) : [0], color: "#0e8c82" }]);
   setText("top-locations-paragraph", `${openRows.length} open postings are spread across ${locations.length} locations in the top-location view.`);
+  };
+  employerFilter.addEventListener("input", update);
+  locationFilter.addEventListener("input", update);
+  update();
 }
 
 async function boot() {
