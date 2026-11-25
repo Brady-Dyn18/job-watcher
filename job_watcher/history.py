@@ -114,6 +114,7 @@ def build_details(raw_root: Path) -> dict[str, dict[str, Any]]:
                     "experience_level",
                     "experience_years",
                     "education_requirement",
+                    "finance_area",
                 )
             }
     return {key: details[key] for key in sorted(details)}

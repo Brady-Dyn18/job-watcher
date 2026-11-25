@@ -36,6 +36,7 @@ DETAIL_COLUMNS = (
     "experience_level",
     "experience_years",
     "education_requirement",
+    "finance_area",
 )
 
 
@@ -114,6 +115,11 @@ def _experience_details(*values: Any) -> dict[str, str]:
     elif re.search(r"\b(bachelor'?s?|undergraduate|college degree|four-year degree)\b", lowered):
         education = "Bachelor's degree"
     return {"experience_level": level, "experience_years": years, "education_requirement": education}
+
+
+def finance_area_match(*values: Any) -> bool:
+    text = " ".join(_as_text(value) for value in values if value not in (None, "")).lower()
+    return bool(re.search(r"\b(finance|financial|fp\s*&\s*a|accounting|treasury|credit|audit|risk|investment|controller|tax|revenue|pricing)\b", text))
 def _salary_details(*values: Any) -> dict[str, Any]:
     text = " ".join(_as_text(value) for value in values if value not in (None, ""))
     match = re.search(
@@ -181,6 +187,7 @@ def _greenhouse(job: dict[str, Any]) -> dict[str, Any]:
         "workplace_type": _as_text(job.get("workplace_type")),
         **_salary_details(description),
         **_experience_details(description),
+        "finance_area": finance_area_match(job.get("title"), _greenhouse_department(job), description),
     }
 
 
@@ -197,6 +204,7 @@ def _lever(job: dict[str, Any]) -> dict[str, Any]:
         "workplace_type": "",
         **_salary_details(job.get("description")),
         **_experience_details(job.get("description")),
+        "finance_area": finance_area_match(job.get("text"), categories.get("department"), job.get("description")),
     }
 
 
@@ -212,6 +220,7 @@ def _ashby(job: dict[str, Any]) -> dict[str, Any]:
         "workplace_type": _as_text(job.get("workplaceType")),
         **_salary_details(job.get("description"), job.get("compensationTierSummary")),
         **_experience_details(job.get("description"), job.get("compensationTierSummary")),
+        "finance_area": finance_area_match(job.get("title"), job.get("department"), job.get("team"), job.get("description")),
     }
 
 
@@ -234,6 +243,7 @@ def _workday(job: dict[str, Any], source: SourceConfig) -> dict[str, Any]:
         "experience_level": "",
         "experience_years": "",
         "education_requirement": "",
+        "finance_area": finance_area_match(job.get("title")),
     }
 
 
@@ -250,6 +260,7 @@ def _amazon(job: dict[str, Any]) -> dict[str, Any]:
         "workplace_type": _amazon_workplace(job),
         **_salary_details(job.get("description"), job.get("preferred_qualifications"), job.get("basic_qualifications")),
         **_experience_details(job.get("description"), job.get("preferred_qualifications"), job.get("basic_qualifications")),
+        "finance_area": finance_area_match(job.get("title"), job.get("job_category"), job.get("job_family"), job.get("description")),
     }
 
 

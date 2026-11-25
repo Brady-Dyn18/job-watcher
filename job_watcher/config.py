@@ -50,6 +50,12 @@ SOURCES = (
     SourceConfig("samsara", "Samsara", "greenhouse", "samsara", "https://boards.greenhouse.io/samsara"),
     SourceConfig("asana", "Asana", "greenhouse", "asana", "https://boards.greenhouse.io/asana"),
     SourceConfig("palantir", "Palantir", "lever", "palantir", "https://jobs.lever.co/palantir"),
+    SourceConfig("sofi", "SoFi", "greenhouse", "sofi", "https://sofi.com/careers"),
+    SourceConfig("block", "Block", "greenhouse", "block", "https://block.xyz/careers"),
+    SourceConfig("plaid", "Plaid", "ashby", "plaid", "https://jobs.ashbyhq.com/plaid"),
+    SourceConfig("upstart", "Upstart", "greenhouse", "upstart", "https://careers.upstart.com"),
+    SourceConfig("lendingtree", "LendingTree", "greenhouse", "lendingtree", "https://www.lendingtree.com/careers"),
+    SourceConfig("current", "Current", "greenhouse", "current", "https://current.com/careers"),
     # These public Workday boards return JSON without login. The board_token is
     # the public host and search_term stores the Workday tenant/site path.
     SourceConfig("bank-of-america", "Bank of America", "workday", "ghr.wd1.myworkdayjobs.com", "https://ghr.wd1.myworkdayjobs.com/Lateral-US", "ghr/Lateral-US", "finance"),

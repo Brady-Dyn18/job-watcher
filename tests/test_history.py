@@ -91,3 +91,4 @@ def test_optional_details_are_separate_from_rubric_history_columns(tmp_path):
     assert details["amazon:a-1"]["salary_min"] == 73600.0
     assert details["amazon:a-1"]["salary_currency"] == "USD"
     assert "experience_level" in details["amazon:a-1"]
+    assert details["amazon:a-1"]["finance_area"] is True

@@ -28,6 +28,7 @@ def test_greenhouse_conversion_to_common_columns():
     assert row["department"] == "Finance"
     assert row["posted_date"] == "2026-01-02"
     assert row["in_role"] is True
+    assert row["finance_area"] is True
 
 
 def test_lever_conversion_to_common_columns():
@@ -156,3 +157,24 @@ def test_experience_and_location_metadata_are_normalized():
     assert row["experience_level"] == "Early career"
     assert row["experience_years"] == "0–2 years"
     assert row["education_requirement"] == "Bachelor's degree"
+
+
+def test_additional_finance_feed_conversion():
+    row = normalize_payload(
+        source("sofi"),
+        {
+            "jobs": [
+                {
+                    "id": 99,
+                    "title": "Corporate Finance Analyst",
+                    "location": {"name": "San Francisco, CA"},
+                    "departments": [{"name": "Finance"}],
+                    "first_published": "2026-01-02T10:00:00Z",
+                    "absolute_url": "https://example.test/sofi/99",
+                }
+            ]
+        },
+    )[0]
+    assert row["employer"] == "SoFi"
+    assert row["in_role"] is True
+    assert row["finance_area"] is True

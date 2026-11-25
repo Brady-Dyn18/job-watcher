@@ -4,7 +4,7 @@ const state = { status: null, rows: [], details: {} };
 const ROLE_SHORTLIST_KEY = "finance-job-watcher-shortlist-v1";
 const BROWSE_PREFS_KEY = "finance-job-watcher-browse-preferences-v1";
 const SAVED_SEARCHES_KEY = "finance-job-watcher-saved-searches-v1";
-const APP_VERSION = "13";
+const APP_VERSION = "14";
 const US_STATE_CODES = new Set("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC".split(" "));
 const FOCUS_EMPLOYERS = [
   { name: "JPMorgan Chase", group: "Financial services", url: "https://www.jpmorganchase.com/careers", roles: ["Financial Analyst", "Treasury Analyst", "Credit Analyst"] },
@@ -23,6 +23,15 @@ const FOCUS_EMPLOYERS = [
   { name: "United Airlines", group: "Corporate finance", url: "https://careers.united.com/us/en/search-results", roles: ["Financial Analyst", "FP&A Analyst", "Treasury Analyst"] },
   { name: "McDonald's", group: "Corporate finance", url: "https://careers.mcdonalds.com/", roles: ["Financial Analyst", "FP&A Analyst", "Finance Rotational Analyst"] },
 ];
+const ADDITIONAL_FINANCE_EMPLOYERS = [
+  { name: "SoFi", group: "Fintech", url: "https://sofi.com/careers", roles: ["Financial Analyst", "FP&A Analyst", "Corporate Finance Analyst"], feed: true },
+  { name: "Block", group: "Fintech", url: "https://block.xyz/careers", roles: ["Financial Analyst", "Business Finance Analyst", "Treasury Analyst"], feed: true },
+  { name: "Plaid", group: "Fintech", url: "https://jobs.ashbyhq.com/plaid", roles: ["Financial Analyst", "FP&A Analyst", "Finance Operations Analyst"], feed: true },
+  { name: "Upstart", group: "Lending and credit", url: "https://careers.upstart.com", roles: ["Financial Analyst", "Credit Analyst", "FP&A Analyst"], feed: true },
+  { name: "LendingTree", group: "Lending and credit", url: "https://www.lendingtree.com/careers", roles: ["Financial Analyst", "FP&A Analyst", "Credit Analyst"], feed: true },
+  { name: "Current", group: "Fintech", url: "https://current.com/careers", roles: ["Financial Analyst", "Business Finance Analyst", "FP&A Analyst"], feed: true },
+];
+const DIRECTORY_EMPLOYERS = [...FOCUS_EMPLOYERS, ...ADDITIONAL_FINANCE_EMPLOYERS];
 const US_STATES = [
   ["Alabama", "AL"], ["Alaska", "AK"], ["Arizona", "AZ"], ["Arkansas", "AR"], ["California", "CA"], ["Colorado", "CO"], ["Connecticut", "CT"], ["Delaware", "DE"], ["Florida", "FL"], ["Georgia", "GA"], ["Hawaii", "HI"], ["Idaho", "ID"], ["Illinois", "IL"], ["Indiana", "IN"], ["Iowa", "IA"], ["Kansas", "KS"], ["Kentucky", "KY"], ["Louisiana", "LA"], ["Maine", "ME"], ["Maryland", "MD"], ["Massachusetts", "MA"], ["Michigan", "MI"], ["Minnesota", "MN"], ["Mississippi", "MS"], ["Missouri", "MO"], ["Montana", "MT"], ["Nebraska", "NE"], ["Nevada", "NV"], ["New Hampshire", "NH"], ["New Jersey", "NJ"], ["New Mexico", "NM"], ["New York", "NY"], ["North Carolina", "NC"], ["North Dakota", "ND"], ["Ohio", "OH"], ["Oklahoma", "OK"], ["Oregon", "OR"], ["Pennsylvania", "PA"], ["Rhode Island", "RI"], ["South Carolina", "SC"], ["South Dakota", "SD"], ["Tennessee", "TN"], ["Texas", "TX"], ["Utah", "UT"], ["Vermont", "VT"], ["Virginia", "VA"], ["Washington", "WA"], ["West Virginia", "WV"], ["Wisconsin", "WI"], ["Wyoming", "WY"], ["District of Columbia", "DC"],
 ];
@@ -130,8 +139,10 @@ function setSelectedValues(element, values, fallback = []) {
 function urlPreferences() {
   const params = new URLSearchParams(window.location.search);
   if (![...params.keys()].length) return {};
+  const scope = params.get("scope") || (params.get("role") === "all" ? "all" : "entry");
   return {
-    onlyRole: params.get("role") !== "all",
+    scope,
+    onlyRole: scope === "entry",
     employer: params.getAll("employer"),
     location: params.getAll("location"),
     daysOpen: params.get("days") || "",
@@ -146,7 +157,7 @@ function urlPreferences() {
 }
 function writeFilterUrl(preferences) {
   const params = new URLSearchParams();
-  if (!preferences.onlyRole) params.set("role", "all");
+  if (preferences.scope && preferences.scope !== "entry") params.set("scope", preferences.scope);
   preferenceList(preferences.employer).forEach((value) => params.append("employer", value));
   preferenceList(preferences.location).forEach((value) => params.append("location", value));
   if (preferences.daysOpen) params.set("days", preferences.daysOpen);
@@ -180,6 +191,28 @@ function matchesMarketLocation(location, selected) {
   const value = String(location || "").toUpperCase();
   const tokens = value.replace(/[^A-Z\s]/g, " ").split(/\s+/).filter(Boolean);
   return value.includes(state[0].toUpperCase()) || tokens.includes(state[1]);
+}
+
+function isFinancePosting(row, detail = state.details[row.posting_id] || {}) {
+  if (isTrue(detail.finance_area)) return true;
+  return /\b(finance|financial|fp\s*&\s*a|accounting|treasury|credit|audit|risk|investment|controller|tax|revenue|pricing)\b/i.test(`${row.title || ""} ${row.department || ""}`);
+}
+
+function dedupeRows(rows) {
+  const seen = new Set();
+  return rows.filter((row) => {
+    const url = String(row.url || "").toLowerCase().split("?")[0];
+    const key = url || `${row.employer}|${row.title}|${row.location}`.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function matchReason(row, preferences, detail) {
+  if (preferences.scope === "all") return "U.S. posting from a connected public feed";
+  if (preferences.scope === "finance") return isTrue(detail.finance_area) ? "Title, department, or description contains a finance-area keyword" : "Title or department contains a finance-area keyword";
+  return "Title matches the entry-level finance role rule";
 }
 
 function rowLink(row) {
@@ -221,8 +254,10 @@ function getShortlist() { try { return new Set(JSON.parse(localStorage.getItem(R
 function saveShortlist(set) { localStorage.setItem(ROLE_SHORTLIST_KEY, JSON.stringify([...set])); }
 
 function browsePreferencesFromControls() {
+  const scope = document.getElementById("role-scope").value;
   return {
-    onlyRole: document.getElementById("role-toggle").checked,
+    scope,
+    onlyRole: scope === "entry",
     employer: selectedValues(document.getElementById("employer-filter")),
     location: selectedValues(document.getElementById("location-filter")),
     daysOpen: document.getElementById("days-open-filter").value,
@@ -237,7 +272,8 @@ function browsePreferencesFromControls() {
 }
 
 function applyBrowsePreferences(preferences) {
-  document.getElementById("role-toggle").checked = preferences.onlyRole !== false;
+  const scope = preferences.scope || (preferences.onlyRole === false ? "all" : "entry");
+  document.getElementById("role-scope").value = scope;
   setSelectedValues(document.getElementById("employer-filter"), preferences.employer, [""]);
   setSelectedValues(document.getElementById("location-filter"), preferences.location, ["__US__"]);
   ["daysOpen", "minimumSalary", "titleSearch"].forEach((key) => {
@@ -258,11 +294,13 @@ function matchesBrowseRow(row, preferences, last) {
   if ((locations.length ? locations : ["__US__"]).includes("__US__")) {
     if (!isUnitedStatesLocation(row.location)) return false;
   } else if (!locations.some((location) => matchesMarketLocation(row.location, location))) return false;
-  if (preferences.onlyRole && !isTrue(row.in_role)) return false;
+  const detail = state.details[row.posting_id] || {};
+  const scope = preferences.scope || (preferences.onlyRole === false ? "all" : "entry");
+  if (scope === "entry" && !isTrue(row.in_role)) return false;
+  if (scope === "finance" && !isFinancePosting(row, detail)) return false;
   if (employers.length && !employers.includes(row.employer)) return false;
   if (preferences.titleSearch && !String(row.title || "").toLowerCase().includes(preferences.titleSearch.trim().toLowerCase())) return false;
   if (preferences.daysOpen !== "" && (dateDiff(row.first_seen, last) ?? 0) > Number(preferences.daysOpen)) return false;
-  const detail = state.details[row.posting_id] || {};
   const workplaceText = `${detail.workplace_type || ""} ${row.location || ""}`.toLowerCase();
   if (preferences.workplace === "Remote" && !workplaceText.includes("remote")) return false;
   if (preferences.workplace === "Hybrid" && !workplaceText.includes("hybrid")) return false;
@@ -281,7 +319,7 @@ function matchesBrowseRow(row, preferences, last) {
 
 function filterBrowseRows(preferences) {
   const last = dataThrough();
-  return state.rows.filter((row) => matchesBrowseRow(row, preferences, last)).sort((a, b) => {
+  return dedupeRows(state.rows.filter((row) => matchesBrowseRow(row, preferences, last))).sort((a, b) => {
     const aDate = a.posted_date || a.first_seen || "";
     const bDate = b.posted_date || b.first_seen || "";
     return preferences.sort === "oldest" ? aDate.localeCompare(bDate) : bDate.localeCompare(aDate);
@@ -289,7 +327,8 @@ function filterBrowseRows(preferences) {
 }
 
 function searchLabel(preferences) {
-  const roles = preferences.titleSearch || (preferences.onlyRole ? "Finance roles" : "All finance postings");
+  const scopeLabel = { entry: "Entry-level roles", finance: "All finance openings", all: "All U.S. postings" }[preferences.scope || (preferences.onlyRole ? "entry" : "all")];
+  const roles = preferences.titleSearch || scopeLabel;
   const employers = preferenceList(preferences.employer);
   const locations = preferenceList(preferences.location);
   const place = locations.includes("__US__") || !locations.length ? "United States" : locations.join(", ");
@@ -317,26 +356,36 @@ function renderBrowse() {
   setText("last-run", dataThrough());
   const employerFilter = document.getElementById("employer-filter");
   const locationFilter = document.getElementById("location-filter");
-  const matchingEmployerCounts = state.rows.filter((row) => row.status === "open" && isTrue(row.in_role) && isUnitedStatesLocation(row.location)).reduce((counts, row) => { counts[row.employer] = (counts[row.employer] || 0) + 1; return counts; }, {});
-  const focusNames = new Set(FOCUS_EMPLOYERS.map((company) => company.name));
-  const additionalEmployers = Object.keys(matchingEmployerCounts).filter((name) => !focusNames.has(name)).sort();
+  const loadMore = document.getElementById("load-more-postings");
+  let visibleLimit = 60;
+  const matchingEmployerCounts = state.rows.filter((row) => row.status === "open" && isFinancePosting(row) && isUnitedStatesLocation(row.location)).reduce((counts, row) => { counts[row.employer] = (counts[row.employer] || 0) + 1; return counts; }, {});
+  const directoryNames = new Set(DIRECTORY_EMPLOYERS.map((company) => company.name));
+  const additionalEmployers = Object.keys(matchingEmployerCounts).filter((name) => !directoryNames.has(name)).sort();
   const focusOptions = FOCUS_EMPLOYERS.map((company) => {
     const count = matchingEmployerCounts[company.name];
     const suffix = count ? ` (${count} available)` : " (official board)";
     return `<option value="${escapeHtml(company.name)}">${escapeHtml(company.name + suffix)}</option>`;
   }).join("");
+  const validatedOptions = ADDITIONAL_FINANCE_EMPLOYERS.map((company) => {
+    const count = matchingEmployerCounts[company.name];
+    const suffix = count ? ` (${count} available)` : " (feed connected)";
+    return `<option value="${escapeHtml(company.name)}">${escapeHtml(company.name + suffix)}</option>`;
+  }).join("");
   const additionalOptions = additionalEmployers.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(`${name} (${matchingEmployerCounts[name]} available)`)}</option>`).join("");
-  document.getElementById("focus-employers").innerHTML = FOCUS_EMPLOYERS.map((company) => {
+  document.getElementById("focus-employers").innerHTML = DIRECTORY_EMPLOYERS.map((company) => {
     const count = matchingEmployerCounts[company.name] || 0;
-    const availability = count ? `${count} tracked U.S. role${count === 1 ? "" : "s"}` : "Official board · no tracked match yet";
+    const source = (state.status.sources || []).find((item) => item.name === company.name);
+    const coverage = source ? (source.ok ? "Validated public feed" : "Feed connected · needs attention") : (company.feed ? "Validated feed · awaiting first run" : "Official board only");
+    const availability = count ? `${count} tracked U.S. finance posting${count === 1 ? "" : "s"}` : coverage;
     return `<a class="focus-card" href="${escapeHtml(company.url)}" target="_blank" rel="noopener noreferrer"><div><strong>${escapeHtml(company.name)}</strong><small>${escapeHtml(company.group)} · ${escapeHtml(availability)}</small><div class="role-chips">${company.roles.map((role) => `<span class="role-chip">${escapeHtml(role)}</span>`).join("")}</div></div><span class="external-arrow">↗</span></a>`;
   }).join("");
-  employerFilter.innerHTML = `<option value="">All finance employers</option><optgroup label="Focus employers">${focusOptions}</optgroup>${additionalOptions ? `<optgroup label="Other employers with matching roles">${additionalOptions}</optgroup>` : ""}`;
+  employerFilter.innerHTML = `<option value="">All finance employers</option><optgroup label="Focus employers">${focusOptions}</optgroup><optgroup label="More validated finance companies">${validatedOptions}</optgroup>${additionalOptions ? `<optgroup label="Other employers with matching roles">${additionalOptions}</optgroup>` : ""}`;
   locationFilter.innerHTML = `<option value="__US__">United States · all states</option>${US_STATES.map(([name]) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("")}`;
-  const preferences = { onlyRole: true, location: ["__US__"], sort: "newest", ...browsePreferences(), ...urlPreferences() };
+  const preferences = { scope: "entry", onlyRole: true, location: ["__US__"], sort: "newest", ...browsePreferences(), ...urlPreferences() };
   applyBrowsePreferences(preferences);
 
-  const update = () => {
+  const update = (resetLimit = false) => {
+    if (resetLimit) visibleLimit = 60;
     const current = browsePreferencesFromControls();
     const filtered = filterBrowseRows(current);
     const shortlist = getShortlist();
@@ -344,31 +393,39 @@ function renderBrowse() {
     writeFilterUrl(current);
     setText("browse-count", filtered.length);
     setText("shortlist-count", shortlist.size);
-    const metadataCount = Object.values(state.details).filter((detail) => detail.salary_max || detail.workplace_type || detail.employment_type || detail.experience_level).length;
-    setText("browse-freshness", `Updated ${displayDate(dataThrough())} · ${Object.keys(matchingEmployerCounts).length} employers · ${metadataCount} enriched postings`);
+    const metadataCount = Object.values(state.details).filter((detail) => detail.salary_max || detail.workplace_type || detail.employment_type || detail.experience_level || isTrue(detail.finance_area)).length;
+    setText("browse-freshness", `Updated ${displayDate(dataThrough())} · ${Object.keys(matchingEmployerCounts).length} finance employers · ${metadataCount} enriched postings`);
     const list = document.getElementById("browse-list");
     const last = dataThrough();
     if (filtered.length) {
-      list.innerHTML = filtered.map((row) => {
+      const visibleRows = filtered.slice(0, visibleLimit);
+      list.innerHTML = visibleRows.map((row) => {
         const detail = state.details[row.posting_id] || {};
         const salary = formatSalary(detail);
         const postedLabel = row.posted_date ? `Posted ${displayDate(row.posted_date)}` : `First seen ${displayDate(row.first_seen)}`;
         const metadataTags = [detail.workplace_type, detail.employment_type, detail.experience_level, detail.experience_years, detail.education_requirement, salary ? `Salary ${salary}` : ""].filter(Boolean).map((value) => `<span class="tag">${escapeHtml(value)}</span>`).join("");
-        return `<article class="job-card"><button class="star ${shortlist.has(row.posting_id) ? "saved" : ""}" data-star="${escapeHtml(row.posting_id)}" aria-label="${shortlist.has(row.posting_id) ? "Remove from" : "Add to"} shortlist" title="${shortlist.has(row.posting_id) ? "Remove from" : "Add to"} shortlist">${shortlist.has(row.posting_id) ? "★" : "☆"}</button><div class="job-card-kicker">${isTrue(row.in_role) ? "Matched role" : "Related posting"}</div><h3>${rowLink(row)}</h3><p>${escapeHtml(row.employer)} · ${escapeHtml(row.location || "Location not listed")}</p><div class="tags"><span class="tag ${isTrue(row.in_role) ? "role" : ""}">${isTrue(row.in_role) ? "In my role" : "Other posting"}</span><span class="tag">${escapeHtml(row.department || "Department not listed")}</span><span class="tag">${escapeHtml(postedLabel)}</span>${metadataTags}</div><div class="job-card-footer"><small>${escapeHtml(String(dateDiff(row.first_seen, last) ?? 0))} days in watch · Checked ${escapeHtml(displayDate(last))} · Available</small><a class="apply-link" href="${escapeHtml(row.url || "#")}" target="_blank" rel="noopener noreferrer">Apply ↗</a></div></article>`;
+        const reason = matchReason(row, current, detail);
+        return `<article class="job-card"><button class="star ${shortlist.has(row.posting_id) ? "saved" : ""}" data-star="${escapeHtml(row.posting_id)}" aria-label="${shortlist.has(row.posting_id) ? "Remove from" : "Add to"} shortlist" title="${shortlist.has(row.posting_id) ? "Remove from" : "Add to"} shortlist">${shortlist.has(row.posting_id) ? "★" : "☆"}</button><div class="job-card-kicker">${current.scope === "entry" && isTrue(row.in_role) ? "Entry-level match" : current.scope === "finance" ? "Finance-area match" : "U.S. posting"}</div><h3>${rowLink(row)}</h3><p>${escapeHtml(row.employer)} · ${escapeHtml(row.location || "Location not listed")}</p><div class="tags"><span class="tag ${isTrue(row.in_role) ? "role" : ""}">${isTrue(row.in_role) ? "Entry-level title" : "Finance-area posting"}</span><span class="tag">${escapeHtml(row.department || "Department not listed")}</span><span class="tag">${escapeHtml(postedLabel)}</span>${metadataTags}</div><p class="match-reason"><strong>Why this matched:</strong> ${escapeHtml(reason)}</p><div class="job-card-footer"><small>${escapeHtml(String(dateDiff(row.first_seen, last) ?? 0))} days in watch · Checked ${escapeHtml(displayDate(last))} · Available</small><a class="apply-link" href="${escapeHtml(row.url || "#")}" target="_blank" rel="noopener noreferrer">Apply ↗</a></div></article>`;
       }).join("");
     } else {
       const employers = preferenceList(current.employer);
-      const company = employers.length === 1 ? FOCUS_EMPLOYERS.find((item) => item.name === employers[0]) : null;
+      const company = employers.length === 1 ? DIRECTORY_EMPLOYERS.find((item) => item.name === employers[0]) : null;
       list.innerHTML = company ? `<div class="empty browse-empty"><span>No tracked roles match these filters.</span><a class="text-link" href="${escapeHtml(company.url)}" target="_blank" rel="noopener noreferrer">Check ${escapeHtml(company.name)}'s official board ↗</a></div>` : emptyMessage("No open postings match these filters.");
     }
+    loadMore.hidden = filtered.length <= visibleLimit;
+    if (!loadMore.hidden) loadMore.textContent = `Show more postings (${visibleLimit} of ${filtered.length})`;
     renderSavedSearches(current);
   };
-  ["role-toggle", "employer-filter", "location-filter", "days-open-filter", "title-search", "sort-order", "workplace-filter", "employment-filter", "posted-within-filter", "experience-filter", "minimum-salary-filter"].forEach((id) => {
-    document.getElementById(id).addEventListener("input", update);
-    document.getElementById(id).addEventListener("change", update);
+  ["role-scope", "employer-filter", "location-filter", "days-open-filter", "title-search", "sort-order", "workplace-filter", "employment-filter", "posted-within-filter", "experience-filter", "minimum-salary-filter"].forEach((id) => {
+    document.getElementById(id).addEventListener("input", () => update(true));
+    document.getElementById(id).addEventListener("change", () => update(true));
   });
   document.getElementById("reset-filters").addEventListener("click", () => {
-    applyBrowsePreferences({ onlyRole: true, employer: [], location: ["__US__"], daysOpen: "", workplace: "", employment: "", postedWithin: "", experience: "", minimumSalary: "", titleSearch: "", sort: "newest" });
+    applyBrowsePreferences({ scope: "entry", onlyRole: true, employer: [], location: ["__US__"], daysOpen: "", workplace: "", employment: "", postedWithin: "", experience: "", minimumSalary: "", titleSearch: "", sort: "newest" });
+    update(true);
+  });
+  loadMore.addEventListener("click", () => {
+    visibleLimit += 60;
     update();
   });
   document.getElementById("browse-list").addEventListener("click", (event) => {

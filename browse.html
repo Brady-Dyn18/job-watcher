@@ -19,7 +19,7 @@
       </section>
       <section class="filter-panel panel">
         <div class="filter-row">
-          <label class="switch-label"><input id="role-toggle" type="checkbox" checked /><span class="switch"></span><span>Only postings in my role</span></label>
+          <label class="role-scope-field">Role scope<select id="role-scope"><option value="entry">Entry-level finance roles</option><option value="finance">All finance openings</option><option value="all">All U.S. postings</option></select></label>
           <label class="wide-filter">Employer<select id="employer-filter" multiple size="8" aria-describedby="multi-filter-help"><option value="">All employers</option></select></label>
           <label class="wide-filter">Location<select id="location-filter" multiple size="8" aria-describedby="multi-filter-help"><option value="__US__">United States · all states</option></select></label>
           <label>Days open<input id="days-open-filter" type="number" min="0" placeholder="Any" /></label>
@@ -32,7 +32,7 @@
           <label>Sort<select id="sort-order"><option value="newest">Newest first seen</option><option value="oldest">Oldest first seen</option></select></label>
           <button id="reset-filters" class="reset-button" type="button">Reset filters</button>
         </div>
-        <p id="multi-filter-help" class="filter-help">Choose multiple employers or states with Command/Ctrl-click. Filters are saved in this browser and reflected in the URL.</p>
+        <p id="multi-filter-help" class="filter-help">Entry-level mode uses the title rule. All finance mode adds accounting, treasury, credit, audit, risk, tax, and corporate-finance postings. Choose multiple employers or states with Command/Ctrl-click.</p>
         <div class="filter-summary" aria-live="polite"><strong id="browse-count">-</strong><span>matching U.S. postings</span><span class="separator">·</span><span id="shortlist-count">0</span><span>starred</span><span class="separator">·</span><span class="us-badge">U.S. only</span><span class="separator">·</span><span id="browse-freshness">Loading freshness...</span></div>
       </section>
       <section class="panel saved-search-panel">
@@ -41,8 +41,9 @@
         <div id="saved-search-list" class="saved-search-list"></div>
       </section>
       <section id="browse-list" class="browse-grid"></section>
+      <div class="load-more-wrap"><button id="load-more-postings" class="secondary-button" type="button" hidden>Show more postings</button></div>
     </main>
     <footer class="shell footer"><span>Filters and stars are saved in this browser.</span><span>Offline-ready</span></footer>
-    <script src="./app.js?v=13" defer></script>
+    <script src="./app.js?v=14" defer></script>
   </body>
 </html>

@@ -113,6 +113,9 @@ select:focus, input:focus { outline: 3px solid rgba(14,140,130,.16); border-colo
 .job-card-kicker { margin-bottom: 7px; color: var(--teal); font-size: 10px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
 .job-card h3 { margin: 0 42px 6px 0; font-size: 17px; line-height: 1.25; }
 .job-card p { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+.job-card .match-reason { margin: -4px 0 16px; color: #53657e; font-size: 11px; }
+.job-card .match-reason strong { color: var(--navy-2); }
+.load-more-wrap { display: flex; justify-content: center; padding: 8px 0 18px; }
 .job-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .tag { padding: 4px 8px; border-radius: 7px; color: var(--navy-2); background: #edf2f8; font-size: 11px; font-weight: 700; }
 .tag.role { color: #08736d; background: var(--teal-soft); }
