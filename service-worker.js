@@ -1,4 +1,4 @@
-const CACHE = "finance-job-watcher-v14";
+const CACHE = "finance-job-watcher-v15";
 const SHELL = ["./", "./index.html", "./browse.html", "./market.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./icon.svg", "./data/status.json", "./data/history.csv", "./data/details.json"];
 
 self.addEventListener("install", (event) => {

@@ -4,7 +4,7 @@ const state = { status: null, rows: [], details: {} };
 const ROLE_SHORTLIST_KEY = "finance-job-watcher-shortlist-v1";
 const BROWSE_PREFS_KEY = "finance-job-watcher-browse-preferences-v1";
 const SAVED_SEARCHES_KEY = "finance-job-watcher-saved-searches-v1";
-const APP_VERSION = "14";
+const APP_VERSION = "15";
 const US_STATE_CODES = new Set("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC".split(" "));
 const FOCUS_EMPLOYERS = [
   { name: "JPMorgan Chase", group: "Financial services", url: "https://www.jpmorganchase.com/careers", roles: ["Financial Analyst", "Treasury Analyst", "Credit Analyst"] },
