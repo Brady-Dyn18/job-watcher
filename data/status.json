@@ -1,0 +1,105 @@
+{
+  "run_time": "2026-11-25T18:59:43.645382Z",
+  "first_run_date": "2026-11-25",
+  "days_with_success": 1,
+  "open": 5020,
+  "new_today": 0,
+  "removed_today": 0,
+  "sources": [
+    {
+      "name": "Ramp",
+      "ok": true,
+      "count": 182
+    },
+    {
+      "name": "Notion",
+      "ok": true,
+      "count": 172
+    },
+    {
+      "name": "OpenAI",
+      "ok": true,
+      "count": 877
+    },
+    {
+      "name": "Linear",
+      "ok": true,
+      "count": 30
+    },
+    {
+      "name": "Stripe",
+      "ok": true,
+      "count": 773
+    },
+    {
+      "name": "Datadog",
+      "ok": true,
+      "count": 390
+    },
+    {
+      "name": "Coinbase",
+      "ok": true,
+      "count": 245
+    },
+    {
+      "name": "Affirm",
+      "ok": true,
+      "count": 215
+    },
+    {
+      "name": "Toast",
+      "ok": true,
+      "count": 302
+    },
+    {
+      "name": "Twilio",
+      "ok": true,
+      "count": 110
+    },
+    {
+      "name": "Robinhood",
+      "ok": true,
+      "count": 161
+    },
+    {
+      "name": "Airbnb",
+      "ok": true,
+      "count": 199
+    },
+    {
+      "name": "Brex",
+      "ok": true,
+      "count": 261
+    },
+    {
+      "name": "Chime",
+      "ok": true,
+      "count": 78
+    },
+    {
+      "name": "Pinterest",
+      "ok": true,
+      "count": 167
+    },
+    {
+      "name": "Reddit",
+      "ok": true,
+      "count": 149
+    },
+    {
+      "name": "Samsara",
+      "ok": true,
+      "count": 294
+    },
+    {
+      "name": "Asana",
+      "ok": true,
+      "count": 110
+    },
+    {
+      "name": "Palantir",
+      "ok": true,
+      "count": 305
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "job-watcher"
+version = "0.1.0"
+description = "A daily entry-level finance job watcher with a GitHub Pages dashboard."
+requires-python = ">=3.14"
+dependencies = ["requests>=2.32"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+include = ["job_watcher*"]
