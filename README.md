@@ -65,6 +65,7 @@ When GitHub credentials are available, the pipeline opens or updates an issue ti
 
 - `index.html` is the Today page with run time, source health, four status counts, and new/removed lists.
 - `browse.html` is the Browse page with role/all toggle, employer/location/days-open filters, title search, first-seen sorting, apply links, and browser-persisted shortlist stars.
+- Browse is U.S.-only and includes a 15-employer directory linking to current official finance and corporate job boards, with the entry-level role names shown for each employer.
 - `market.html` is the Market page. It calculates all six rubric sections in the browser from `data/history.csv` and renders charts without an external chart library.
 - `manifest.webmanifest` and `service-worker.js` make the site installable. Data requests are network-first online and cached for offline use.
 

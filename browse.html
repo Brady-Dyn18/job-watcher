@@ -11,11 +11,15 @@
   <body data-page="browse">
     <header class="site-header"><div class="shell nav-wrap"><a class="brand" href="./index.html"><span class="brand-mark">FJ</span><span>Finance Job Watcher</span></a><nav aria-label="Primary navigation"><a href="./index.html">Today</a><a class="active" href="./browse.html">Browse</a><a href="./market.html">Market</a></nav></div></header>
     <main class="shell page-content">
-      <section class="hero compact-hero"><div><p class="eyebrow">Open postings</p><h1>Find your next finance role</h1><p class="lede">Filter every open posting, then star the ones you want to revisit.</p></div><div class="run-card"><span>Data through</span><strong id="last-run">Loading...</strong></div></section>
+      <section class="hero compact-hero"><div><p class="eyebrow">U.S. open postings</p><h1>Find your next finance role</h1><p class="lede">Browse U.S.-based openings, then jump to finance-focused employers for their current roles.</p></div><div class="run-card"><span>Data through</span><strong id="last-run">Loading...</strong></div></section>
       <div id="load-error" class="notice error hidden" role="alert"></div>
+      <section class="panel focus-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Employer directory</p><h2>Finance and corporate employers</h2></div><span class="muted">Official job boards · U.S. roles</span></div>
+        <div id="focus-employers" class="focus-grid"></div>
+      </section>
       <section class="filter-panel panel">
-        <div class="filter-row"><label class="switch-label"><input id="role-toggle" type="checkbox" checked /><span class="switch"></span><span>Only postings in my role</span></label><label>Employer<select id="employer-filter"><option value="">All employers</option></select></label><label>Location<select id="location-filter"><option value="">All locations</option></select></label><label>Days open<input id="days-open-filter" type="number" min="0" placeholder="Any" /></label><label class="search-label">Title search<input id="title-search" type="search" placeholder="e.g. treasury" /></label><label>Sort<select id="sort-order"><option value="newest">Newest first seen</option><option value="oldest">Oldest first seen</option></select></label></div>
-        <div class="filter-summary"><strong id="browse-count">-</strong><span>matching open postings</span><span class="separator">·</span><span id="shortlist-count">0</span><span>starred</span></div>
+        <div class="filter-row"><label class="switch-label"><input id="role-toggle" type="checkbox" checked /><span class="switch"></span><span>Only postings in my role</span></label><label>Employer<select id="employer-filter"><option value="">All tracked employers</option></select></label><label>Location<select id="location-filter"><option value="">All U.S. locations</option></select></label><label>Days open<input id="days-open-filter" type="number" min="0" placeholder="Any" /></label><label class="search-label">Title search<input id="title-search" type="search" placeholder="e.g. treasury" /></label><label>Sort<select id="sort-order"><option value="newest">Newest first seen</option><option value="oldest">Oldest first seen</option></select></label></div>
+        <div class="filter-summary"><strong id="browse-count">-</strong><span>matching U.S. postings</span><span class="separator">·</span><span id="shortlist-count">0</span><span>starred</span><span class="separator">·</span><span class="us-badge">U.S. only</span></div>
       </section>
       <section id="browse-list" class="browse-grid"></section>
     </main>

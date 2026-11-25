@@ -2,6 +2,24 @@
 
 const state = { status: null, rows: [] };
 const ROLE_SHORTLIST_KEY = "finance-job-watcher-shortlist-v1";
+const US_STATE_CODES = new Set("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC".split(" "));
+const FOCUS_EMPLOYERS = [
+  { name: "JPMorgan Chase", group: "Financial services", url: "https://www.jpmorganchase.com/careers", roles: ["Financial Analyst", "Treasury Analyst", "Credit Analyst"] },
+  { name: "Bank of America", group: "Financial services", url: "https://careers.bankofamerica.com/en-us/job-search", roles: ["Financial Analyst", "FP&A Analyst", "Credit Analyst"] },
+  { name: "Wells Fargo", group: "Financial services", url: "https://www.wellsfargojobs.com/en/jobs/", roles: ["Financial Analyst", "Treasury Analyst", "Credit Analyst"] },
+  { name: "Citi", group: "Financial services", url: "https://jobs.citi.com/", roles: ["Financial Analyst", "Treasury Analyst", "Credit Analyst"] },
+  { name: "Goldman Sachs", group: "Financial services", url: "https://www.goldmansachs.com/careers", roles: ["Financial Analyst", "Credit Analyst", "Finance Rotational Analyst"] },
+  { name: "Morgan Stanley", group: "Financial services", url: "https://www.morganstanley.com/careers/career-opportunities-search", roles: ["Financial Analyst", "FP&A Analyst", "Credit Analyst"] },
+  { name: "Capital One", group: "Financial services", url: "https://www.capitalonecareers.com/search-jobs", roles: ["Financial Analyst", "Treasury Analyst", "Credit Analyst"] },
+  { name: "Charles Schwab", group: "Financial services", url: "https://www.schwabjobs.com/en/search-jobs", roles: ["Financial Analyst", "Credit Analyst", "Finance Rotational Analyst"] },
+  { name: "Amazon", group: "Corporate finance", url: "https://www.amazon.jobs/en/search", roles: ["Financial Analyst", "FP&A Analyst", "Finance Rotational Analyst"] },
+  { name: "Microsoft", group: "Corporate finance", url: "https://jobs.careers.microsoft.com/global/en/search", roles: ["Financial Analyst", "FP&A Analyst", "Finance Rotational Analyst"] },
+  { name: "Apple", group: "Corporate finance", url: "https://jobs.apple.com/en-us/search", roles: ["Financial Analyst", "FP&A Analyst", "Treasury Analyst"] },
+  { name: "Walmart", group: "Corporate finance", url: "https://careers.walmart.com/us/en/search-results", roles: ["Financial Analyst", "FP&A Analyst", "Finance Rotational Analyst"] },
+  { name: "PepsiCo", group: "Corporate finance", url: "https://www.pepsicojobs.com/main/jobs", roles: ["Financial Analyst", "FP&A Analyst", "Finance Rotational Analyst"] },
+  { name: "United Airlines", group: "Corporate finance", url: "https://careers.united.com/us/en/search-results", roles: ["Financial Analyst", "FP&A Analyst", "Treasury Analyst"] },
+  { name: "McDonald's", group: "Corporate finance", url: "https://careers.mcdonalds.com/", roles: ["Financial Analyst", "FP&A Analyst", "Finance Rotational Analyst"] },
+];
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
@@ -72,6 +90,14 @@ function setText(id, value) { const element = document.getElementById(id); if (e
 function isTrue(value) { return value === true || value === "true"; }
 function emptyMessage(message) { return `<div class="empty">${escapeHtml(message)}</div>`; }
 
+function isUnitedStatesLocation(location) {
+  const value = String(location || "").trim();
+  if (!value) return false;
+  if (/\b(united states|u\.s\.a?\.?|usa|remote\s*\(?us\)?|us\s*remote)\b/i.test(value)) return true;
+  const tokens = value.toUpperCase().replace(/[^A-Z\s]/g, " ").split(/\s+/).filter(Boolean);
+  return tokens.some((token) => US_STATE_CODES.has(token));
+}
+
 function rowLink(row) {
   const url = row.url || "#";
   return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(row.title || "Untitled posting")}</a>`;
@@ -105,6 +131,7 @@ function saveShortlist(set) { localStorage.setItem(ROLE_SHORTLIST_KEY, JSON.stri
 
 function renderBrowse() {
   setText("last-run", dataThrough());
+  document.getElementById("focus-employers").innerHTML = FOCUS_EMPLOYERS.map((company) => `<a class="focus-card" href="${escapeHtml(company.url)}" target="_blank" rel="noopener noreferrer"><div><strong>${escapeHtml(company.name)}</strong><small>${escapeHtml(company.group)}</small><div class="role-chips">${company.roles.map((role) => `<span class="role-chip">${escapeHtml(role)}</span>`).join("")}</div></div><span class="external-arrow">↗</span></a>`).join("");
   const employers = [...new Set(state.rows.map((row) => row.employer).filter(Boolean))].sort();
   const locations = [...new Set(state.rows.map((row) => row.location).filter(Boolean))].sort();
   document.getElementById("employer-filter").insertAdjacentHTML("beforeend", employers.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join(""));
@@ -119,6 +146,7 @@ function renderBrowse() {
     const last = dataThrough();
     const filtered = state.rows.filter((row) => {
       if (row.status !== "open") return false;
+      if (!isUnitedStatesLocation(row.location)) return false;
       if (onlyRole && !isTrue(row.in_role)) return false;
       if (employer && row.employer !== employer) return false;
       if (location && row.location !== location) return false;
