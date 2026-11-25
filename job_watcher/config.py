@@ -77,6 +77,6 @@ TITLE_RULE_DESCRIPTION = (
     "In role when the title contains Financial Analyst, Finance Analyst, Junior Financial Analyst, "
     "FP&A Analyst, Financial Planning Analyst, Business Finance Analyst, Sales Finance Analyst, "
     "Corporate Finance Analyst, Finance Operations Analyst, Finance Rotational Analyst, Treasury Analyst, "
-    "or Credit Analyst; excludes senior, "
-    "lead, principal, staff, manager, director, vice-president, and internship titles."
+    "or Credit Analyst; excludes senior, level-II/III, lead, principal, staff, manager, director, "
+    "vice-president, and internship titles."
 )

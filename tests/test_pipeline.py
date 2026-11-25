@@ -28,8 +28,8 @@ def test_failed_source_does_not_stop_other_sources(tmp_path, monkeypatch):
     results = pipeline.fetch_sources(tmp_path / "raw", "2026-03-01", session=FakeSession())
 
     assert results == [
-        {"name": "Ramp", "ok": True, "count": 0},
-        {"name": "Notion", "ok": False, "count": 0, "error": "simulated outage"},
+        {"name": "Ramp", "ok": True, "count": 0, "last_successful_run": "2026-03-01"},
+        {"name": "Notion", "ok": False, "count": 0, "error": "simulated outage", "last_successful_run": ""},
     ]
     assert (tmp_path / "raw" / "2026-03-01" / "ramp.json.gz").exists()
     assert not (tmp_path / "raw" / "2026-03-01" / "notion.json.gz").exists()

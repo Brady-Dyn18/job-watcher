@@ -21,6 +21,29 @@ from .normalize import normalize_payload
 LOGGER = logging.getLogger(__name__)
 
 
+def _request_with_backoff(session: requests.Session, method: str, url: str, **kwargs: Any) -> requests.Response:
+    """Retry transient board responses without hammering a rate-limited feed."""
+
+    retries = 4
+    for attempt in range(retries):
+        if hasattr(session, "request"):
+            response = session.request(method, url, **kwargs)
+        else:
+            response = getattr(session, method.lower())(url, **kwargs)
+        status_code = getattr(response, "status_code", 200)
+        if status_code not in {429, 500, 502, 503, 504} or attempt == retries - 1:
+            return response
+        retry_after = getattr(response, "headers", {}).get("Retry-After", "")
+        try:
+            retry_seconds = float(retry_after)
+        except (TypeError, ValueError):
+            retry_seconds = 0
+        delay = max(retry_seconds, min(30, 3 * (2**attempt)))
+        LOGGER.info("%s %s returned %s; retrying in %.1fs", method, url, status_code, delay)
+        time.sleep(delay)
+    raise RuntimeError("request retry loop ended unexpectedly")
+
+
 def _payload_count(source: SourceConfig, payload: Any) -> int:
     if source.ats == "lever":
         return len(payload) if isinstance(payload, list) else len((payload or {}).get("data") or [])
@@ -44,16 +67,14 @@ def _fetch_paginated(source: SourceConfig, session: requests.Session) -> Any:
         offset = 0
         total = None
         while total is None or offset < total:
-            for attempt in range(3):
-                response = session.post(
-                    source.api_url,
-                    json={"appliedFacets": {}, "limit": 20, "offset": offset, "searchText": source.query},
-                    headers={**headers, "Content-Type": "application/json"},
-                    timeout=45,
-                )
-                if response.status_code != 429 or attempt == 2:
-                    break
-                time.sleep(3 * (attempt + 1))
+            response = _request_with_backoff(
+                session,
+                "POST",
+                source.api_url,
+                json={"appliedFacets": {}, "limit": 20, "offset": offset, "searchText": source.query},
+                headers={**headers, "Content-Type": "application/json"},
+                timeout=45,
+            )
             response.raise_for_status()
             page = response.json()
             page_postings = list((page or {}).get("jobPostings") or [])
@@ -69,7 +90,9 @@ def _fetch_paginated(source: SourceConfig, session: requests.Session) -> Any:
         offset = 0
         total = None
         while total is None or offset < total:
-            response = session.get(
+            response = _request_with_backoff(
+                session,
+                "GET",
                 source.api_url,
                 params={"base_query": source.search_term, "offset": offset, "result_limit": 100},
                 headers=headers,
@@ -85,7 +108,7 @@ def _fetch_paginated(source: SourceConfig, session: requests.Session) -> Any:
             offset += len(page_jobs)
         return {"jobs": jobs, "hits": total or len(jobs)}
 
-    response = session.get(source.api_url, headers=headers, timeout=45)
+    response = _request_with_backoff(session, "GET", source.api_url, headers=headers, timeout=45)
     response.raise_for_status()
     return response.json()
 
@@ -114,6 +137,10 @@ def fetch_sources(raw_root: Path, day: str, session: requests.Session | None = N
             LOGGER.warning("%s failed: %s", source.employer, exc)
             result["error"] = str(exc)
         results.append(result)
+    for result in results:
+        source_slug = next(source.slug for source in SOURCES if source.employer == result["name"])
+        successful_days = sorted(path.parent.name for path in raw_root.glob(f"*/{source_slug}.json.gz"))
+        result["last_successful_run"] = successful_days[-1] if successful_days else ""
     return results
 
 

@@ -24,6 +24,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python -m job_watcher.pipeline
+      - name: Validate generated data
+        run: python -m job_watcher.quality
       - name: Commit daily data
         run: |
           git config user.name "github-actions[bot]"

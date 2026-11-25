@@ -20,22 +20,29 @@
       <section class="filter-panel panel">
         <div class="filter-row">
           <label class="switch-label"><input id="role-toggle" type="checkbox" checked /><span class="switch"></span><span>Only postings in my role</span></label>
-          <label>Employer<select id="employer-filter"><option value="">All employers</option></select></label>
-          <label>Location<select id="location-filter"><option value="__US__">United States</option></select></label>
+          <label>Employer<select id="employer-filter" multiple size="3" aria-describedby="multi-filter-help"><option value="">All employers</option></select></label>
+          <label>Location<select id="location-filter" multiple size="3" aria-describedby="multi-filter-help"><option value="__US__">United States · all states</option></select></label>
           <label>Days open<input id="days-open-filter" type="number" min="0" placeholder="Any" /></label>
           <label>Workplace<select id="workplace-filter"><option value="">Any workplace</option><option value="Remote">Remote</option><option value="Hybrid">Hybrid</option><option value="On-site">On-site</option></select></label>
           <label>Schedule<select id="employment-filter"><option value="">Any schedule</option><option value="full-time">Full-time</option></select></label>
           <label>Posted within<select id="posted-within-filter"><option value="">Any date</option><option value="7">7 days</option><option value="14">14 days</option><option value="30">30 days</option></select></label>
+          <label>Experience<select id="experience-filter"><option value="">Any experience</option><option value="early">Early career / 0–2 years</option><option value="unspecified">Not specified</option></select></label>
           <label>Minimum salary<input id="minimum-salary-filter" type="number" min="0" step="5000" placeholder="Any" /></label>
           <label class="search-label">Title search<input id="title-search" type="search" placeholder="e.g. treasury" /></label>
           <label>Sort<select id="sort-order"><option value="newest">Newest first seen</option><option value="oldest">Oldest first seen</option></select></label>
           <button id="reset-filters" class="reset-button" type="button">Reset filters</button>
         </div>
-        <div class="filter-summary"><strong id="browse-count">-</strong><span>matching U.S. postings</span><span class="separator">·</span><span id="shortlist-count">0</span><span>starred</span><span class="separator">·</span><span class="us-badge">U.S. only</span><span class="separator">·</span><span id="browse-freshness">Loading freshness...</span></div>
+        <p id="multi-filter-help" class="filter-help">Choose multiple employers or states with Command/Ctrl-click. Filters are saved in this browser and reflected in the URL.</p>
+        <div class="filter-summary" aria-live="polite"><strong id="browse-count">-</strong><span>matching U.S. postings</span><span class="separator">·</span><span id="shortlist-count">0</span><span>starred</span><span class="separator">·</span><span class="us-badge">U.S. only</span><span class="separator">·</span><span id="browse-freshness">Loading freshness...</span></div>
+      </section>
+      <section class="panel saved-search-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Personal workspace</p><h2>Saved searches and alerts</h2></div><span id="save-search-status" class="muted" role="status">Local to this browser</span></div>
+        <div class="saved-search-toolbar"><p class="muted">Save a combination, reuse its shareable URL, or email the link to yourself. New matches are counted from the latest run.</p><div class="saved-search-buttons"><button id="save-search" class="primary-button" type="button">Save current search</button><button id="copy-search" class="secondary-button" type="button">Copy share link</button></div></div>
+        <div id="saved-search-list" class="saved-search-list"></div>
       </section>
       <section id="browse-list" class="browse-grid"></section>
     </main>
     <footer class="shell footer"><span>Filters and stars are saved in this browser.</span><span>Offline-ready</span></footer>
-    <script src="./app.js?v=11" defer></script>
+    <script src="./app.js?v=12" defer></script>
   </body>
 </html>

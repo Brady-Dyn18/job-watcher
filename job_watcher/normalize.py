@@ -33,6 +33,9 @@ DETAIL_COLUMNS = (
     "salary_min",
     "salary_max",
     "salary_currency",
+    "experience_level",
+    "experience_years",
+    "education_requirement",
 )
 
 
@@ -68,6 +71,49 @@ def _date_from_value(value: Any) -> str:
         return ""
 
 
+def _normalize_location(value: Any) -> str:
+    text = _as_text(value)
+    if not text:
+        return ""
+    replacements = {
+        "remote - us": "Remote - USA",
+        "remote-us": "Remote - USA",
+        "remote us": "Remote - USA",
+        "united states": "USA",
+    }
+    lowered = text.lower()
+    for source, replacement in replacements.items():
+        if lowered == source:
+            return replacement
+    return re.sub(r"\s+\((?:hq|headquarters)\)$", "", text, flags=re.IGNORECASE)
+
+
+def _experience_details(*values: Any) -> dict[str, str]:
+    text = " ".join(_as_text(value) for value in values if value not in (None, ""))
+    lowered = text.lower()
+    years = ""
+    range_match = re.search(r"\b(\d+)\s*(?:-|to)\s*(\d+)\s+years?\b", lowered)
+    plus_match = re.search(r"\b(\d+)\s*\+\s*years?\b", lowered)
+    up_to_match = re.search(r"\b(?:up to|less than)\s+(\d+)\s+years?\b", lowered)
+    single_match = re.search(r"\b(\d+)\s+years?\b", lowered)
+    if range_match:
+        years = f"{range_match.group(1)}–{range_match.group(2)} years"
+    elif plus_match:
+        years = f"{plus_match.group(1)}+ years"
+    elif up_to_match:
+        years = f"0–{up_to_match.group(1)} years"
+    elif single_match:
+        years = f"{single_match.group(1)}+ years"
+    early = bool(re.search(r"\b(entry[- ]level|early career|new grad|recent graduate|0\s*(?:-|to)\s*2 years?|1\s*(?:-|to)\s*2 years?)\b", lowered))
+    if not early and re.search(r"\b(junior|rotational|analyst i|analyst 1)\b", lowered):
+        early = True
+    level = "Early career" if early else ("Experienced" if re.search(r"\b(?:3|4|5|6|7|8|9|10)\+? years?\b", lowered) else "")
+    education = ""
+    if re.search(r"\b(master'?s|mba|ph\.d|doctorate)\b", lowered):
+        education = "Advanced degree"
+    elif re.search(r"\b(bachelor'?s?|undergraduate|college degree|four-year degree)\b", lowered):
+        education = "Bachelor's degree"
+    return {"experience_level": level, "experience_years": years, "education_requirement": education}
 def _salary_details(*values: Any) -> dict[str, Any]:
     text = " ".join(_as_text(value) for value in values if value not in (None, ""))
     match = re.search(
@@ -123,16 +169,18 @@ def _greenhouse_department(job: dict[str, Any]) -> str:
 
 
 def _greenhouse(job: dict[str, Any]) -> dict[str, Any]:
+    description = job.get("content") or job.get("description")
     return {
         "source_id": _as_text(job.get("id") or job.get("internal_job_id")),
         "title": _as_text(job.get("title")),
-        "location": _greenhouse_location(job),
+        "location": _normalize_location(_greenhouse_location(job)),
         "department": _greenhouse_department(job),
         "posted_date": _date_from_value(job.get("first_published") or job.get("updated_at")),
         "url": _as_text(job.get("absolute_url")),
         "employment_type": _as_text(job.get("employment_type")),
         "workplace_type": _as_text(job.get("workplace_type")),
-        **_salary_details(job.get("content"), job.get("description")),
+        **_salary_details(description),
+        **_experience_details(description),
     }
 
 
@@ -141,13 +189,14 @@ def _lever(job: dict[str, Any]) -> dict[str, Any]:
     return {
         "source_id": _as_text(job.get("id")),
         "title": _as_text(job.get("text")),
-        "location": _as_text(categories.get("location")),
+        "location": _normalize_location(categories.get("location")),
         "department": _as_text(categories.get("department") or categories.get("team")),
         "posted_date": _date_from_value(job.get("createdAt") or job.get("post_date")),
         "url": _as_text(job.get("hostedUrl") or job.get("applyUrl") or job.get("url")),
         "employment_type": _as_text(categories.get("commitment")),
         "workplace_type": "",
         **_salary_details(job.get("description")),
+        **_experience_details(job.get("description")),
     }
 
 
@@ -155,13 +204,14 @@ def _ashby(job: dict[str, Any]) -> dict[str, Any]:
     return {
         "source_id": _as_text(job.get("id")),
         "title": _as_text(job.get("title")),
-        "location": _as_text(job.get("location")),
+        "location": _normalize_location(job.get("location")),
         "department": _as_text(job.get("department") or job.get("team")),
         "posted_date": _date_from_value(job.get("publishedAt")),
         "url": _as_text(job.get("jobUrl") or job.get("applyUrl")),
         "employment_type": _as_text(job.get("employmentType")),
         "workplace_type": _as_text(job.get("workplaceType")),
         **_salary_details(job.get("description"), job.get("compensationTierSummary")),
+        **_experience_details(job.get("description"), job.get("compensationTierSummary")),
     }
 
 
@@ -172,7 +222,7 @@ def _workday(job: dict[str, Any], source: SourceConfig) -> dict[str, Any]:
     return {
         "source_id": source_id,
         "title": _as_text(job.get("title")),
-        "location": _as_text(job.get("locationsText")),
+        "location": _normalize_location(job.get("locationsText")),
         "department": "",
         "posted_date": _date_from_value(job.get("postedOn")),
         "url": f"{source.board_url.rstrip('/')}{external_path}" if external_path else source.board_url,
@@ -181,6 +231,9 @@ def _workday(job: dict[str, Any], source: SourceConfig) -> dict[str, Any]:
         "salary_min": "",
         "salary_max": "",
         "salary_currency": "",
+        "experience_level": "",
+        "experience_years": "",
+        "education_requirement": "",
     }
 
 
@@ -189,13 +242,14 @@ def _amazon(job: dict[str, Any]) -> dict[str, Any]:
     return {
         "source_id": _as_text(job.get("id") or job.get("id_icims") or job_path),
         "title": _as_text(job.get("title")),
-        "location": _as_text(job.get("normalized_location") or job.get("location")),
+        "location": _normalize_location(job.get("normalized_location") or job.get("location")),
         "department": _as_text(job.get("job_category") or job.get("job_family")),
         "posted_date": _date_from_value(job.get("posted_date")),
         "url": f"https://www.amazon.jobs{job_path}" if job_path.startswith("/") else _as_text(job.get("url_next_step")),
         "employment_type": _as_text(job.get("job_schedule_type")),
         "workplace_type": _amazon_workplace(job),
         **_salary_details(job.get("description"), job.get("preferred_qualifications"), job.get("basic_qualifications")),
+        **_experience_details(job.get("description"), job.get("preferred_qualifications"), job.get("basic_qualifications")),
     }
 
 
@@ -219,6 +273,8 @@ def title_in_role(title: str) -> bool:
     if not normalized:
         return False
     if re.search(r"\b(senior|sr|lead|principal|staff|manager|director|vice president|vp|head|intern|internship)\b", normalized):
+        return False
+    if re.search(r"\b(?:analyst|associate)\s*(?:ii|iii|iv|v|2|3|4|5)\b", normalized):
         return False
     patterns = (
         r"\bfinancial\s+analyst\b",
@@ -272,6 +328,9 @@ def normalize_posting(source: SourceConfig, raw: dict[str, Any]) -> dict[str, An
         "removed_date": "",
     }
     row.update({key: fields.get(key, "") for key in DETAIL_COLUMNS})
+    for key, value in _experience_details(fields["title"]).items():
+        if not row.get(key):
+            row[key] = value
     return row
 
 

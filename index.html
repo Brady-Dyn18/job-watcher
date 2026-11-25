@@ -35,6 +35,7 @@
         <article class="metric-card"><span>Open postings</span><strong id="metric-open">-</strong><small>across all watched boards</small></article>
         <article class="metric-card accent"><span>New today</span><strong id="metric-new">-</strong><small>excluding first-run postings</small></article>
         <article class="metric-card warm"><span>Removed today</span><strong id="metric-removed">-</strong><small>no longer listed by a source</small></article>
+        <article class="metric-card healthy"><span>Healthy boards</span><strong id="metric-healthy">-</strong><small id="health-summary">waiting for the latest run</small></article>
       </section>
 
       <section class="two-column">
@@ -42,9 +43,9 @@
         <article class="panel"><div class="panel-heading"><div><p class="eyebrow">Latest changes</p><h2>Removed postings</h2></div></div><div id="removed-list" class="job-list compact"></div></article>
       </section>
 
-      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Source health</p><h2>Every board, every run</h2></div><span class="muted">A failed source never stops the pipeline.</span></div><div class="table-wrap"><table><thead><tr><th>Employer</th><th>Status</th><th>Postings returned</th></tr></thead><tbody id="source-table"></tbody></table></div></section>
+      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Source health</p><h2>Every board, every run</h2></div><span class="muted">A failed source never stops the pipeline.</span></div><div class="table-wrap"><table><thead><tr><th>Employer</th><th>Status</th><th>Last successful run</th><th>Checked</th></tr></thead><tbody id="source-table"></tbody></table></div></section>
     </main>
     <footer class="shell footer"><span>Built from daily public ATS snapshots.</span><span>Offline-ready</span></footer>
-    <script src="./app.js?v=11" defer></script>
+    <script src="./app.js?v=12" defer></script>
   </body>
 </html>

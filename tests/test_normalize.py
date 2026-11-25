@@ -44,7 +44,7 @@ def test_lever_conversion_to_common_columns():
         ],
     )[0]
     assert row["posting_id"] == "palantir:box-1"
-    assert row["location"] == "Remote - US"
+    assert row["location"] == "Remote - USA"
     assert row["department"] == "Finance"
     assert row["posted_date"] == "2026-01-02"
 
@@ -80,7 +80,10 @@ def test_entry_level_title_rule():
     assert title_in_role("Financial Planning Analyst")
     assert title_in_role("Business Finance Analyst")
     assert title_in_role("Finance Operations Analyst")
+    assert title_in_role("Business Finance Analyst")
     assert not title_in_role("Senior Financial Analyst")
+    assert not title_in_role("Financial Analyst III")
+    assert not title_in_role("Finance Analyst II")
     assert not title_in_role("Finance Manager")
     assert not title_in_role("Financial Analyst Intern")
 
@@ -130,3 +133,26 @@ def test_amazon_conversion_extracts_salary_and_workplace():
     assert row["workplace_type"] == "Hybrid"
     assert row["salary_min"] == 73600.0
     assert row["salary_max"] == 128800.0
+
+
+def test_experience_and_location_metadata_are_normalized():
+    row = normalize_payload(
+        source("stripe"),
+        {
+            "jobs": [
+                {
+                    "id": 102,
+                    "title": "Junior Financial Analyst",
+                    "location": {"name": "Remote - US"},
+                    "departments": [{"name": "Finance"}],
+                    "first_published": "2026-01-02T10:00:00Z",
+                    "absolute_url": "https://example.test/stripe/102",
+                    "content": "Bachelor's degree preferred. Entry-level role with 0-2 years of experience.",
+                }
+            ]
+        },
+    )[0]
+    assert row["location"] == "Remote - USA"
+    assert row["experience_level"] == "Early career"
+    assert row["experience_years"] == "0–2 years"
+    assert row["education_requirement"] == "Bachelor's degree"

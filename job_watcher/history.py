@@ -105,7 +105,16 @@ def build_details(raw_root: Path) -> dict[str, dict[str, Any]]:
         for row in normalize_payload(source, read_raw(path)):
             details[row["posting_id"]] = {
                 key: row.get(key, "")
-                for key in ("employment_type", "workplace_type", "salary_min", "salary_max", "salary_currency")
+                for key in (
+                    "employment_type",
+                    "workplace_type",
+                    "salary_min",
+                    "salary_max",
+                    "salary_currency",
+                    "experience_level",
+                    "experience_years",
+                    "education_requirement",
+                )
             }
     return {key: details[key] for key in sorted(details)}
 

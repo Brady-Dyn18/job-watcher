@@ -54,7 +54,7 @@ The entry-level role rule marks a posting `in_role=true` when its title contains
 - Treasury Analyst
 - Credit Analyst
 
-The rule also recognizes Finance Analyst and common reversed forms such as Credit Analyst, Finance. It excludes titles containing Senior, Sr, Lead, Principal, Staff, Manager, Director, Vice President, VP, Head, Intern, or Internship. All postings remain in the history; the rule only labels them.
+The rule also recognizes Finance Analyst and common reversed forms such as Credit Analyst, Finance. It excludes titles containing Senior, Sr, Lead, Principal, Staff, Manager, Director, Vice President, VP, Head, Intern, Internship, or analyst levels II–V. All postings remain in the history; the rule only labels them. Optional source text is parsed into early-career, experience-years, education, workplace, schedule, and salary metadata.
 
 ## Pipeline and data
 
@@ -66,14 +66,14 @@ The history is rebuilt from raw snapshots alone. The deterministic command is:
 uv run python -m job_watcher.build_history --base-dir .
 ```
 
-`data/history.csv` has one row per posting, sorted by `posting_id`, with the exact rubric columns. `data/details.json` stores optional salary, schedule, and workplace metadata separately so the rubric CSV stays unchanged. `data/status.json` describes the latest run, source health, and counts. Reappearing postings are reopened with their original `first_seen` date; missing open postings are removed only when their source has a raw snapshot for that day.
+`data/history.csv` has one row per posting, sorted by `posting_id`, with the exact rubric columns. `data/details.json` stores optional salary, schedule, workplace, experience, and education metadata separately so the rubric CSV stays unchanged. `data/status.json` describes the latest run, source health, last successful source run, and counts. Reappearing postings are reopened with their original `first_seen` date; missing open postings are removed only when their source has a raw snapshot for that day. The daily workflow runs `python -m job_watcher.quality` before committing generated data.
 
 When GitHub credentials are available, the pipeline opens or updates an issue titled with the UTC date, lists new and removed postings with links, and closes the previous day's issue. GitHub Actions commits the raw files, history, details, and status files after each run.
 
 ## Site
 
 - `index.html` is the Today page with run time, source health, four status counts, and new/removed lists.
-- `browse.html` is the Browse page with role/all toggle, employer/location/state/days-open/workplace/schedule/posted-date/salary filters, title search, sorting, apply links, freshness/availability labels, saved filter preferences, and browser-persisted shortlist stars.
+- `browse.html` is the Browse page with role/all toggle, multi-employer/multi-state location filters, days-open/workplace/schedule/posted-date/experience/salary filters, title search, sorting, apply links, freshness/availability labels, shareable URLs, saved searches, local alert counts, and browser-persisted shortlist stars.
 - Browse is U.S.-only and includes a 15-employer directory linking to current official finance and corporate job boards, with the entry-level role names shown for each employer.
 - `market.html` is the Market page. It calculates all six rubric sections in the browser from `data/history.csv` and renders charts without an external chart library.
 - `manifest.webmanifest` and `service-worker.js` make the site installable. Data requests are network-first online and cached for offline use.
@@ -90,12 +90,13 @@ Enable GitHub Pages with the **GitHub Actions** source. The Pages workflow publi
 | `job_watcher/pipeline.py` | Daily fetch, compressed raw snapshots, history/status output, and run orchestration. |
 | `job_watcher/github_issues.py` | Daily Issue creation/update and previous-Issue closing. |
 | `job_watcher/build_history.py` | Command-line history rebuild from `data/raw` only. |
+| `job_watcher/quality.py` | Generated-data validation used by the daily workflow. |
 | `tests/test_normalize.py` | Adapter conversion and title-rule tests. |
 | `tests/test_history.py` | First-run, first-seen, last-seen, removal, reopening, sorting, and reproducibility tests. |
 | `data/raw/` | Compressed daily source snapshots. |
 | `data/history.csv` | Fixed-path posting history. |
 | `data/status.json` | Fixed-path latest-run status and source health. |
-| `data/details.json` | Optional salary, schedule, and workplace metadata keyed by posting ID. |
+| `data/details.json` | Optional salary, schedule, workplace, experience, and education metadata keyed by posting ID. |
 | `index.html` | Today page. |
 | `browse.html` | Browse and shortlist page. |
 | `market.html` | Browser-calculated market report. |
