@@ -1,8 +1,8 @@
 {
-  "run_time": "2026-11-25T22:13:49.998089Z",
+  "run_time": "2026-11-25T23:06:47.514105Z",
   "first_run_date": "2026-11-25",
   "days_with_success": 1,
-  "open": 8584,
+  "open": 8822,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
@@ -45,13 +45,13 @@
     {
       "name": "Coinbase",
       "ok": true,
-      "count": 253,
+      "count": 257,
       "last_successful_run": "2026-11-25"
     },
     {
       "name": "Affirm",
       "ok": true,
-      "count": 215,
+      "count": 213,
       "last_successful_run": "2026-11-25"
     },
     {
@@ -99,13 +99,13 @@
     {
       "name": "Reddit",
       "ok": true,
-      "count": 149,
+      "count": 148,
       "last_successful_run": "2026-11-25"
     },
     {
       "name": "Samsara",
       "ok": true,
-      "count": 297,
+      "count": 299,
       "last_successful_run": "2026-11-25"
     },
     {
@@ -157,29 +157,28 @@
       "last_successful_run": "2026-11-25"
     },
     {
-      "name": "Bank of America",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://ghr.wd1.myworkdayjobs.com/wday/cxs/ghr/Lateral-US/jobs",
-      "last_successful_run": ""
+      "name": "Adyen",
+      "ok": true,
+      "count": 242,
+      "last_successful_run": "2026-11-25"
     },
     {
-      "name": "Capital One",
-      "ok": false,
-      "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs",
-      "last_successful_run": ""
+      "name": "Webflow",
+      "ok": true,
+      "count": 31,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Wells Fargo",
-      "ok": true,
-      "count": 40,
-      "last_successful_run": "2026-11-25"
+      "ok": false,
+      "count": 0,
+      "error": "429 Client Error: Too Many Requests for url: https://wf.wd1.myworkdayjobs.com/wday/cxs/wf/WellsFargoJobs/jobs",
+      "last_successful_run": ""
     },
     {
       "name": "Amazon",
       "ok": true,
-      "count": 3024,
+      "count": 3026,
       "last_successful_run": "2026-11-25"
     }
   ]
