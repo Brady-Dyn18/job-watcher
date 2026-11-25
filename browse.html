@@ -20,8 +20,8 @@
       <section class="filter-panel panel">
         <div class="filter-row">
           <label class="switch-label"><input id="role-toggle" type="checkbox" checked /><span class="switch"></span><span>Only postings in my role</span></label>
-          <label>Employer<select id="employer-filter" multiple size="3" aria-describedby="multi-filter-help"><option value="">All employers</option></select></label>
-          <label>Location<select id="location-filter" multiple size="3" aria-describedby="multi-filter-help"><option value="__US__">United States · all states</option></select></label>
+          <label class="wide-filter">Employer<select id="employer-filter" multiple size="8" aria-describedby="multi-filter-help"><option value="">All employers</option></select></label>
+          <label class="wide-filter">Location<select id="location-filter" multiple size="8" aria-describedby="multi-filter-help"><option value="__US__">United States · all states</option></select></label>
           <label>Days open<input id="days-open-filter" type="number" min="0" placeholder="Any" /></label>
           <label>Workplace<select id="workplace-filter"><option value="">Any workplace</option><option value="Remote">Remote</option><option value="Hybrid">Hybrid</option><option value="On-site">On-site</option></select></label>
           <label>Schedule<select id="employment-filter"><option value="">Any schedule</option><option value="full-time">Full-time</option></select></label>
@@ -43,6 +43,6 @@
       <section id="browse-list" class="browse-grid"></section>
     </main>
     <footer class="shell footer"><span>Filters and stars are saved in this browser.</span><span>Offline-ready</span></footer>
-    <script src="./app.js?v=12" defer></script>
+    <script src="./app.js?v=13" defer></script>
   </body>
 </html>
