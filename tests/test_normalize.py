@@ -91,7 +91,7 @@ def test_entry_level_title_rule():
 
 def test_workday_conversion_to_common_columns():
     row = normalize_payload(
-        source("capital-one"),
+        source("wells-fargo"),
         {
             "jobPostings": [
                 {
@@ -105,8 +105,8 @@ def test_workday_conversion_to_common_columns():
             ]
         },
     )[0]
-    assert row["posting_id"] == "capital-one:R1"
-    assert row["url"].endswith("/Capital_One/job/McLean-VA/Financial-Planning-Analyst_R1")
+    assert row["posting_id"] == "wells-fargo:R1"
+    assert row["url"].endswith("/WellsFargoJobs/job/McLean-VA/Financial-Planning-Analyst_R1")
     assert row["employment_type"] == "Full time"
     assert row["in_role"] is True
 
@@ -178,3 +178,41 @@ def test_additional_finance_feed_conversion():
     assert row["employer"] == "SoFi"
     assert row["in_role"] is True
     assert row["finance_area"] is True
+
+
+def test_replacement_finance_feed_conversion():
+    greenhouse_row = normalize_payload(
+        source("adyen"),
+        {
+            "jobs": [
+                {
+                    "id": 100,
+                    "title": "Financial Risk Analyst",
+                    "location": {"name": "New York, NY"},
+                    "departments": [{"name": "Enterprise Risk"}],
+                    "first_published": "2026-01-02T10:00:00Z",
+                    "absolute_url": "https://example.test/adyen/100",
+                }
+            ]
+        },
+    )[0]
+    ashby_row = normalize_payload(
+        source("webflow"),
+        {
+            "jobs": [
+                {
+                    "id": "webflow-1",
+                    "title": "Financial Analyst, GTM",
+                    "location": "United States",
+                    "department": "Finance",
+                    "publishedAt": "2026-01-03T12:30:00.000+00:00",
+                    "jobUrl": "https://example.test/webflow/webflow-1",
+                }
+            ]
+        },
+    )[0]
+    assert greenhouse_row["employer"] == "Adyen"
+    assert greenhouse_row["finance_area"] is True
+    assert ashby_row["employer"] == "Webflow"
+    assert ashby_row["in_role"] is True
+    assert ashby_row["finance_area"] is True

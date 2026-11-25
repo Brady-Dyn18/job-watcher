@@ -30,6 +30,8 @@ const ADDITIONAL_FINANCE_EMPLOYERS = [
   { name: "Upstart", group: "Lending and credit", url: "https://careers.upstart.com", roles: ["Financial Analyst", "Credit Analyst", "FP&A Analyst"], feed: true },
   { name: "LendingTree", group: "Lending and credit", url: "https://www.lendingtree.com/careers", roles: ["Financial Analyst", "FP&A Analyst", "Credit Analyst"], feed: true },
   { name: "Current", group: "Fintech", url: "https://current.com/careers", roles: ["Financial Analyst", "Business Finance Analyst", "FP&A Analyst"], feed: true },
+  { name: "Adyen", group: "Payments", url: "https://careers.adyen.com/", roles: ["Financial Analyst", "Risk Analyst", "Credit Analyst"], feed: true },
+  { name: "Webflow", group: "Corporate finance", url: "https://webflow.com/careers", roles: ["Financial Analyst", "FP&A Analyst", "Business Finance Analyst"], feed: true },
 ];
 const DIRECTORY_EMPLOYERS = [...FOCUS_EMPLOYERS, ...ADDITIONAL_FINANCE_EMPLOYERS];
 const US_STATES = [
