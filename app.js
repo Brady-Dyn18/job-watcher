@@ -146,7 +146,16 @@ function renderBrowse() {
   document.getElementById("focus-employers").innerHTML = FOCUS_EMPLOYERS.map((company) => `<a class="focus-card" href="${escapeHtml(company.url)}" target="_blank" rel="noopener noreferrer"><div><strong>${escapeHtml(company.name)}</strong><small>${escapeHtml(company.group)}</small><div class="role-chips">${company.roles.map((role) => `<span class="role-chip">${escapeHtml(role)}</span>`).join("")}</div></div><span class="external-arrow">↗</span></a>`).join("");
   const employerFilter = document.getElementById("employer-filter");
   const locationFilter = document.getElementById("location-filter");
-  employerFilter.innerHTML = `<option value="">All employers</option>${FOCUS_EMPLOYERS.map((company) => `<option value="${escapeHtml(company.name)}">${escapeHtml(company.name)}</option>`).join("")}`;
+  const matchingEmployerCounts = state.rows.filter((row) => row.status === "open" && isTrue(row.in_role) && isUnitedStatesLocation(row.location)).reduce((counts, row) => { counts[row.employer] = (counts[row.employer] || 0) + 1; return counts; }, {});
+  const focusNames = new Set(FOCUS_EMPLOYERS.map((company) => company.name));
+  const additionalEmployers = Object.keys(matchingEmployerCounts).filter((name) => !focusNames.has(name)).sort();
+  const focusOptions = FOCUS_EMPLOYERS.map((company) => {
+    const count = matchingEmployerCounts[company.name];
+    const suffix = count ? ` (${count} available)` : " (official board)";
+    return `<option value="${escapeHtml(company.name)}">${escapeHtml(company.name + suffix)}</option>`;
+  }).join("");
+  const additionalOptions = additionalEmployers.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(`${name} (${matchingEmployerCounts[name]} available)`)}</option>`).join("");
+  employerFilter.innerHTML = `<option value="">All finance employers</option><optgroup label="Focus employers">${focusOptions}</optgroup>${additionalOptions ? `<optgroup label="Other employers with matching roles">${additionalOptions}</optgroup>` : ""}`;
   locationFilter.innerHTML = `<option value="__US__">United States</option>${US_STATES.map(([name]) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("")}`;
   const update = () => {
     const onlyRole = document.getElementById("role-toggle").checked;
