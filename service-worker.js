@@ -1,4 +1,4 @@
-const CACHE = "finance-job-watcher-v1";
+const CACHE = "finance-job-watcher-v2";
 const SHELL = ["./", "./index.html", "./browse.html", "./market.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./icon.svg", "./data/status.json", "./data/history.csv"];
 
 self.addEventListener("install", (event) => {
@@ -13,6 +13,10 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const isData = new URL(event.request.url).pathname.endsWith("/data/status.json") || new URL(event.request.url).pathname.endsWith("/data/history.csv");
   if (isData) {
+    event.respondWith(fetch(event.request).then((response) => { const copy = response.clone(); caches.open(CACHE).then((cache) => cache.put(event.request, copy)); return response; }).catch(() => caches.match(event.request)));
+    return;
+  }
+  if (event.request.mode === "navigate") {
     event.respondWith(fetch(event.request).then((response) => { const copy = response.clone(); caches.open(CACHE).then((cache) => cache.put(event.request, copy)); return response; }).catch(() => caches.match(event.request)));
     return;
   }
