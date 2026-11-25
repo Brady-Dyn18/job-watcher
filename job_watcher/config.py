@@ -58,9 +58,7 @@ SOURCES = (
     SourceConfig("current", "Current", "greenhouse", "current", "https://current.com/careers"),
     SourceConfig("adyen", "Adyen", "greenhouse", "adyen", "https://careers.adyen.com/"),
     SourceConfig("webflow", "Webflow", "ashby", "webflow", "https://jobs.ashbyhq.com/webflow"),
-    # This remaining public Workday board returns JSON without login. The
-    # board_token is the public host and search_term stores the tenant/site path.
-    SourceConfig("wells-fargo", "Wells Fargo", "workday", "wf.wd1.myworkdayjobs.com", "https://wf.wd1.myworkdayjobs.com/WellsFargoJobs", "wf/WellsFargoJobs", "finance"),
+    SourceConfig("marqeta", "Marqeta", "ashby", "marqeta-inc", "https://jobs.ashbyhq.com/marqeta-inc"),
     # Amazon's public search endpoint is scoped to the finance search term.
     SourceConfig("amazon", "Amazon", "amazon", "finance", "https://www.amazon.jobs/en/search", "finance"),
 )

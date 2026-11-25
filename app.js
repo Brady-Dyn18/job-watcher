@@ -32,6 +32,7 @@ const ADDITIONAL_FINANCE_EMPLOYERS = [
   { name: "Current", group: "Fintech", url: "https://current.com/careers", roles: ["Financial Analyst", "Business Finance Analyst", "FP&A Analyst"], feed: true },
   { name: "Adyen", group: "Payments", url: "https://careers.adyen.com/", roles: ["Financial Analyst", "Risk Analyst", "Credit Analyst"], feed: true },
   { name: "Webflow", group: "Corporate finance", url: "https://webflow.com/careers", roles: ["Financial Analyst", "FP&A Analyst", "Business Finance Analyst"], feed: true },
+  { name: "Marqeta", group: "Payments", url: "https://www.marqeta.com/company/careers", roles: ["Financial Analyst", "Credit Analyst", "Risk Analyst"], feed: true },
 ];
 const DIRECTORY_EMPLOYERS = [...FOCUS_EMPLOYERS, ...ADDITIONAL_FINANCE_EMPLOYERS];
 const US_STATES = [

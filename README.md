@@ -39,7 +39,7 @@ The project watches 29 employers through public, no-login JSON endpoints. The en
 | Current | Greenhouse | `boards-api.greenhouse.io/v1/boards/current/jobs?content=true` |
 | Adyen | Greenhouse | `boards-api.greenhouse.io/v1/boards/adyen/jobs?content=true` |
 | Webflow | Ashby | `api.ashbyhq.com/posting-api/job-board/webflow` |
-| Wells Fargo | Workday | `wf.wd1.myworkdayjobs.com/wday/cxs/wf/WellsFargoJobs/jobs` |
+| Marqeta | Ashby | `api.ashbyhq.com/posting-api/job-board/marqeta-inc` |
 | Amazon | Amazon Jobs JSON | `amazon.jobs/en/search.json?base_query=finance` |
 
 Greenhouse's public job-board API, Lever's public Postings API, and Ashby's public Job Postings API are used directly. The pipeline never reads the HTML of a job board and does not require login credentials.
@@ -80,7 +80,7 @@ When GitHub credentials are available, the pipeline opens or updates an issue ti
 
 - `index.html` is the Today page with run time, source health, four status counts, and new/removed lists.
 - `browse.html` is the Browse page with entry-level, all-finance, and all-U.S.-posting scopes; multi-employer/multi-state location filters; days-open/workplace/schedule/posted-date/experience/salary filters; title search; sorting; apply links; match explanations; freshness/availability labels; shareable URLs; saved searches; local alert counts; browser-persisted shortlist stars; and progressive loading for large result sets.
-- Browse is U.S.-only and includes a 23-employer directory linking to official finance and corporate job boards, with entry-level role names shown for each employer. Eight additional fintech, payments, lending, and corporate-finance companies are connected to validated ATS feeds; cards label feed coverage and filtered results are deduplicated.
+- Browse is U.S.-only and includes a 24-employer directory linking to official finance and corporate job boards, with entry-level role names shown for each employer. Nine additional fintech, payments, lending, and corporate-finance companies are connected to validated ATS feeds; cards label feed coverage and filtered results are deduplicated.
 - `market.html` is the Market page. It calculates all six rubric sections in the browser from `data/history.csv` and renders charts without an external chart library.
 - `manifest.webmanifest` and `service-worker.js` make the site installable. Data requests are network-first online and cached for offline use.
 

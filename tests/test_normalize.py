@@ -1,4 +1,4 @@
-from job_watcher.config import SOURCES
+from job_watcher.config import SOURCES, SourceConfig
 from job_watcher.normalize import normalize_payload, title_in_role
 
 
@@ -91,7 +91,7 @@ def test_entry_level_title_rule():
 
 def test_workday_conversion_to_common_columns():
     row = normalize_payload(
-        source("wells-fargo"),
+        SourceConfig("demo-workday", "Demo Workday", "workday", "jobs.example.test", "https://jobs.example.test/WellsFargoJobs", "demo/WellsFargoJobs", "finance"),
         {
             "jobPostings": [
                 {
@@ -105,7 +105,7 @@ def test_workday_conversion_to_common_columns():
             ]
         },
     )[0]
-    assert row["posting_id"] == "wells-fargo:R1"
+    assert row["posting_id"] == "demo-workday:R1"
     assert row["url"].endswith("/WellsFargoJobs/job/McLean-VA/Financial-Planning-Analyst_R1")
     assert row["employment_type"] == "Full time"
     assert row["in_role"] is True
@@ -211,8 +211,25 @@ def test_replacement_finance_feed_conversion():
             ]
         },
     )[0]
+    marqeta_row = normalize_payload(
+        source("marqeta"),
+        {
+            "jobs": [
+                {
+                    "id": "marqeta-1",
+                    "title": "Senior Commercial Finance Analyst",
+                    "location": "Remote - USA",
+                    "department": "Finance",
+                    "publishedAt": "2026-01-04T12:30:00.000+00:00",
+                    "jobUrl": "https://example.test/marqeta/marqeta-1",
+                }
+            ]
+        },
+    )[0]
     assert greenhouse_row["employer"] == "Adyen"
     assert greenhouse_row["finance_area"] is True
     assert ashby_row["employer"] == "Webflow"
     assert ashby_row["in_role"] is True
     assert ashby_row["finance_area"] is True
+    assert marqeta_row["employer"] == "Marqeta"
+    assert marqeta_row["finance_area"] is True
