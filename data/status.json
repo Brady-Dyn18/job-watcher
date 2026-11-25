@@ -1,127 +1,186 @@
 {
-  "run_time": "2026-11-25T20:47:31.110366Z",
+  "run_time": "2026-11-25T22:13:49.998089Z",
   "first_run_date": "2026-11-25",
   "days_with_success": 1,
-  "open": 8094,
+  "open": 8584,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
     {
       "name": "Ramp",
       "ok": true,
-      "count": 183
+      "count": 183,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Notion",
       "ok": true,
-      "count": 172
+      "count": 174,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "OpenAI",
       "ok": true,
-      "count": 876
+      "count": 876,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Linear",
       "ok": true,
-      "count": 30
+      "count": 30,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Stripe",
       "ok": true,
-      "count": 772
+      "count": 772,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Datadog",
       "ok": true,
-      "count": 391
+      "count": 392,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Coinbase",
       "ok": true,
-      "count": 246
+      "count": 253,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Affirm",
       "ok": true,
-      "count": 215
+      "count": 215,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Toast",
       "ok": true,
-      "count": 301
+      "count": 301,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Twilio",
       "ok": true,
-      "count": 110
+      "count": 110,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Robinhood",
       "ok": true,
-      "count": 161
+      "count": 161,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Airbnb",
       "ok": true,
-      "count": 200
+      "count": 198,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Brex",
       "ok": true,
-      "count": 269
+      "count": 269,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Chime",
       "ok": true,
-      "count": 77
+      "count": 77,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Pinterest",
       "ok": true,
-      "count": 167
+      "count": 166,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Reddit",
       "ok": true,
-      "count": 149
+      "count": 149,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Samsara",
       "ok": true,
-      "count": 296
+      "count": 297,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Asana",
       "ok": true,
-      "count": 110
+      "count": 110,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Palantir",
       "ok": true,
-      "count": 305
+      "count": 305,
+      "last_successful_run": "2026-11-25"
+    },
+    {
+      "name": "SoFi",
+      "ok": true,
+      "count": 57,
+      "last_successful_run": "2026-11-25"
+    },
+    {
+      "name": "Block",
+      "ok": true,
+      "count": 183,
+      "last_successful_run": "2026-11-25"
+    },
+    {
+      "name": "Plaid",
+      "ok": true,
+      "count": 144,
+      "last_successful_run": "2026-11-25"
+    },
+    {
+      "name": "Upstart",
+      "ok": true,
+      "count": 74,
+      "last_successful_run": "2026-11-25"
+    },
+    {
+      "name": "LendingTree",
+      "ok": true,
+      "count": 20,
+      "last_successful_run": "2026-11-25"
+    },
+    {
+      "name": "Current",
+      "ok": true,
+      "count": 4,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Bank of America",
       "ok": false,
       "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://ghr.wd1.myworkdayjobs.com/wday/cxs/ghr/Lateral-US/jobs"
+      "error": "429 Client Error: Too Many Requests for url: https://ghr.wd1.myworkdayjobs.com/wday/cxs/ghr/Lateral-US/jobs",
+      "last_successful_run": ""
     },
     {
       "name": "Capital One",
       "ok": false,
       "count": 0,
-      "error": "429 Client Error: Too Many Requests for url: https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs"
+      "error": "429 Client Error: Too Many Requests for url: https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs",
+      "last_successful_run": ""
     },
     {
       "name": "Wells Fargo",
       "ok": true,
-      "count": 40
+      "count": 40,
+      "last_successful_run": "2026-11-25"
     },
     {
       "name": "Amazon",
       "ok": true,
-      "count": 3024
+      "count": 3024,
+      "last_successful_run": "2026-11-25"
     }
   ]
 }
