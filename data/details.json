@@ -1037,7 +1037,7 @@
     "education_requirement": "",
     "employment_type": "",
     "experience_level": "Experienced",
-    "experience_years": "2+ years",
+    "experience_years": "7+ years",
     "finance_area": true,
     "salary_currency": "USD",
     "salary_max": 279000.0,
@@ -1510,7 +1510,7 @@
     "education_requirement": "",
     "employment_type": "",
     "experience_level": "Experienced",
-    "experience_years": "4+ years",
+    "experience_years": "1\u20134 years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -2210,6 +2210,17 @@
     "salary_min": 119000.0,
     "workplace_type": ""
   },
+  "adyen:8333485": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "adyen:8333892": {
     "education_requirement": "",
     "employment_type": "",
@@ -2496,6 +2507,17 @@
     "salary_min": 121000.0,
     "workplace_type": ""
   },
+  "adyen:8376508": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "adyen:8378318": {
     "education_requirement": "",
     "employment_type": "",
@@ -2661,6 +2683,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "adyen:8415906": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "2\u20133 years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "affirm:7663434003": {
     "education_requirement": "Bachelor's degree",
     "employment_type": "",
@@ -2700,9 +2733,9 @@
     "experience_level": "Experienced",
     "experience_years": "5+ years",
     "finance_area": true,
-    "salary_currency": "",
-    "salary_max": "",
-    "salary_min": "",
+    "salary_currency": "USD",
+    "salary_max": 225000.0,
+    "salary_min": 165000.0,
     "workplace_type": ""
   },
   "affirm:7719647003": {
@@ -2744,9 +2777,9 @@
     "experience_level": "Experienced",
     "experience_years": "3+ years",
     "finance_area": true,
-    "salary_currency": "",
-    "salary_max": "",
-    "salary_min": "",
+    "salary_currency": "USD",
+    "salary_max": 183000.0,
+    "salary_min": 133000.0,
     "workplace_type": ""
   },
   "affirm:7749755003": {
@@ -3106,6 +3139,17 @@
     "employment_type": "",
     "experience_level": "Experienced",
     "experience_years": "8+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "affirm:7827039003": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "4+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -3910,9 +3954,9 @@
     "experience_level": "Experienced",
     "experience_years": "4+ years",
     "finance_area": true,
-    "salary_currency": "USD",
-    "salary_max": 24000.0,
-    "salary_min": 16000.0,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": ""
   },
   "affirm:8034645003": {
@@ -4009,9 +4053,9 @@
     "experience_level": "Experienced",
     "experience_years": "5+ years",
     "finance_area": true,
-    "salary_currency": "USD",
-    "salary_max": 24000.0,
-    "salary_min": 16000.0,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": ""
   },
   "affirm:8037635003": {
@@ -4771,6 +4815,28 @@
     "salary_currency": "USD",
     "salary_max": 245000.0,
     "salary_min": 185000.0,
+    "workplace_type": ""
+  },
+  "affirm:8200178003": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "4+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "affirm:8200180003": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "4+ years",
+    "finance_area": true,
+    "salary_currency": "USD",
+    "salary_max": 48000.0,
+    "salary_min": 32000.0,
     "workplace_type": ""
   },
   "affirm:8200669003": {
@@ -6698,6 +6764,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "airbnb:8360678": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Early career",
+    "experience_years": "8+ years",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "airbnb:8364499": {
     "education_requirement": "",
     "employment_type": "",
@@ -7182,6 +7259,39 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "airbnb:8417974": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "3+ years",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "airbnb:8417975": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "airbnb:8418573": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "12+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "amazon:002c7fd4-b98b-4eec-a691-aa3aad7511ec": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
@@ -7358,6 +7468,17 @@
     "salary_min": 157900.0,
     "workplace_type": "On-site"
   },
+  "amazon:01640661-d133-4575-ab73-9d4dde092ec8": {
+    "education_requirement": "Advanced degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "4+ years",
+    "finance_area": true,
+    "salary_currency": "USD",
+    "salary_max": 117100.0,
+    "salary_min": 66900.0,
+    "workplace_type": "On-site"
+  },
   "amazon:016a15a1-bb09-4e70-b1db-a23e131c0d6d": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
@@ -7444,6 +7565,17 @@
     "salary_currency": "USD",
     "salary_max": 128300.0,
     "salary_min": 73300.0,
+    "workplace_type": "On-site"
+  },
+  "amazon:020a4177-1b33-4fce-8bf8-5f6aed9591c0": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "1+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": "On-site"
   },
   "amazon:022195aa-a46f-4233-bf8e-f34a6b12febe": {
@@ -7609,6 +7741,17 @@
     "salary_currency": "USD",
     "salary_max": 182700.0,
     "salary_min": 135000.0,
+    "workplace_type": "On-site"
+  },
+  "amazon:03beada5-8d19-41ec-9ab3-f4eeac70c9ba": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "10+ years",
+    "finance_area": true,
+    "salary_currency": "USD",
+    "salary_max": 239200.0,
+    "salary_min": 176800.0,
     "workplace_type": "On-site"
   },
   "amazon:03c18f00-777d-4a80-9dd3-8e33dd4901f0": {
@@ -8331,6 +8474,17 @@
     "employment_type": "full-time",
     "experience_level": "Experienced",
     "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:0a1714ee-4e91-4699-b6ee-4648a5040b14": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -14332,6 +14486,17 @@
     "salary_min": "",
     "workplace_type": "On-site"
   },
+  "amazon:379e2506-aa52-4232-a217-2bf04c5a9fec": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "3+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:37a2a6c0-bd1d-484b-b755-fab151b4d048": {
     "education_requirement": "Bachelor's degree",
     "employment_type": "full-time",
@@ -18182,6 +18347,17 @@
     "salary_min": 131300.0,
     "workplace_type": "On-site"
   },
+  "amazon:582a4be8-6d69-41d3-96e9-018b0e7f5662": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:5839d799-bb8f-4408-9832-8a5b9560a4c3": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
@@ -19267,8 +19443,8 @@
     "experience_years": "5+ years",
     "finance_area": true,
     "salary_currency": "USD",
-    "salary_max": 163200.0,
-    "salary_min": 95400.0,
+    "salary_max": 179500.0,
+    "salary_min": 104900.0,
     "workplace_type": "On-site"
   },
   "amazon:60698212-a52b-4b9b-85a9-6bf1f4f494f4": {
@@ -19654,6 +19830,17 @@
     "salary_currency": "USD",
     "salary_max": 201200.0,
     "salary_min": 148700.0,
+    "workplace_type": "On-site"
+  },
+  "amazon:63af48f9-2f8e-44f5-9fb6-3430aa4179a8": {
+    "education_requirement": "Advanced degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": "On-site"
   },
   "amazon:63bcb3e8-dd0c-49d0-9b25-969e4a1cb92b": {
@@ -22505,6 +22692,17 @@
     "salary_min": "",
     "workplace_type": "On-site"
   },
+  "amazon:784c8a18-7935-42b2-ae5a-78021f29da2e": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:7852af76-5aad-4093-9c1f-6ed83a538519": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
@@ -24881,6 +25079,17 @@
     "salary_min": 169300.0,
     "workplace_type": "On-site"
   },
+  "amazon:8992e499-c512-47c0-afbd-270789825336": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:899b16bb-9bbc-4a3b-b2a2-0ca80a457b08": {
     "education_requirement": "Bachelor's degree",
     "employment_type": "full-time",
@@ -25462,6 +25671,17 @@
     "salary_currency": "USD",
     "salary_max": 182700.0,
     "salary_min": 135000.0,
+    "workplace_type": "On-site"
+  },
+  "amazon:8db208f7-5fd7-49dc-b53f-d7cad9df54cc": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": "On-site"
   },
   "amazon:8dccb224-2699-446a-ab47-60057ab82c55": {
@@ -26449,6 +26669,17 @@
     "experience_level": "",
     "experience_years": "2+ years",
     "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:94ad8b9b-3e8c-4a93-9319-c2e55171dff9": {
+    "education_requirement": "",
+    "employment_type": "full-time",
+    "experience_level": "Early career",
+    "experience_years": "",
+    "finance_area": false,
     "salary_currency": "",
     "salary_max": "",
     "salary_min": "",
@@ -28313,6 +28544,17 @@
     "salary_min": 119600.0,
     "workplace_type": "On-site"
   },
+  "amazon:a22a1a39-679c-4aae-b666-bf6ed9c66e87": {
+    "education_requirement": "",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:a2888440-11d2-431f-8b3b-94270add1334": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
@@ -29319,6 +29561,17 @@
     "employment_type": "full-time",
     "experience_level": "Experienced",
     "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:aa5b2c98-b795-4c42-b762-dd9428db7c0b": {
+    "education_requirement": "Advanced degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -31294,6 +31547,17 @@
     "salary_min": "",
     "workplace_type": "On-site"
   },
+  "amazon:b8a9b4a7-023e-4009-8089-16f7fcbc0da8": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:b8d6780b-0ba9-445d-b865-7f9d997e22ba": {
     "education_requirement": "",
     "employment_type": "full-time",
@@ -31955,6 +32219,17 @@
     "workplace_type": "On-site"
   },
   "amazon:be00db8f-5b20-4ac8-a1aa-4b8860024d39": {
+    "education_requirement": "Advanced degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:be17411e-dae8-4dc4-a134-f653894062fb": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
     "experience_level": "",
@@ -32920,6 +33195,17 @@
     "salary_currency": "USD",
     "salary_max": 160000.0,
     "salary_min": 116800.0,
+    "workplace_type": "On-site"
+  },
+  "amazon:c6c059ec-ce9c-4be2-8703-e130c97c6f7f": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": "On-site"
   },
   "amazon:c6dbacb6-1528-4fc9-9980-bd5602684c0d": {
@@ -34022,6 +34308,17 @@
     "salary_min": 143700.0,
     "workplace_type": "On-site"
   },
+  "amazon:cf0103bc-18a7-4e0c-8595-ee26f6acea46": {
+    "education_requirement": "",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "4+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:cf02273f-3e1a-4441-8643-1b8fc785b73c": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
@@ -34407,6 +34704,17 @@
     "salary_min": 102000.0,
     "workplace_type": "On-site"
   },
+  "amazon:d198ad63-10cd-4ddb-ab39-156da9601f89": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "3+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:d1a55916-25ce-437c-ae9b-ca9852618f71": {
     "education_requirement": "",
     "employment_type": "full-time",
@@ -34555,6 +34863,17 @@
     "employment_type": "full-time",
     "experience_level": "",
     "experience_years": "1+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:d2c9a0be-6ef4-4ab9-a88f-d1ecb05ddedd": {
+    "education_requirement": "Advanced degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -34790,6 +35109,17 @@
     "salary_currency": "USD",
     "salary_max": 163200.0,
     "salary_min": 95400.0,
+    "workplace_type": "On-site"
+  },
+  "amazon:d524f670-956c-4838-a17a-0bd362cb2fe4": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": "On-site"
   },
   "amazon:d52cf1bc-4e4e-4a2c-a3c0-afc37905b560": {
@@ -35540,6 +35870,17 @@
     "salary_min": 139300.0,
     "workplace_type": "On-site"
   },
+  "amazon:d9c02dbd-4591-45ef-a3f7-ab3da68a489f": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:da09c4df-9062-404c-a532-31024fce3685": {
     "education_requirement": "Advanced degree",
     "employment_type": "full-time",
@@ -36161,6 +36502,17 @@
     "employment_type": "full-time",
     "experience_level": "",
     "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:de0d64c3-85ef-4238-95e7-2f52da1acf25": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -37377,6 +37729,17 @@
     "salary_min": 85800.0,
     "workplace_type": "On-site"
   },
+  "amazon:e69f17a2-d0d0-46a0-a8fd-9ddba3375a76": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "",
+    "experience_years": "1+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
   "amazon:e6c01b0b-2daa-4099-997f-b15c7fa83022": {
     "education_requirement": "",
     "employment_type": "full-time",
@@ -37452,6 +37815,17 @@
     "salary_currency": "USD",
     "salary_max": 199900.0,
     "salary_min": 147800.0,
+    "workplace_type": "On-site"
+  },
+  "amazon:e745ddf3-3716-406c-9c97-37fc617160cf": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
     "workplace_type": "On-site"
   },
   "amazon:e751a609-b28e-445c-8928-ed28853cbaa3": {
@@ -37991,6 +38365,17 @@
     "salary_currency": "",
     "salary_max": "",
     "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:ea97f171-3878-4e35-982f-7992baf48e60": {
+    "education_requirement": "Advanced degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "USD",
+    "salary_max": 163200.0,
+    "salary_min": 95400.0,
     "workplace_type": "On-site"
   },
   "amazon:eaa8519a-c9db-46f0-94bb-f974b0785ec3": {
@@ -38702,6 +39087,17 @@
     "employment_type": "full-time",
     "experience_level": "Experienced",
     "experience_years": "3+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": "On-site"
+  },
+  "amazon:f05814e8-7817-4689-868b-6f3c603b051e": {
+    "education_requirement": "Advanced degree",
+    "employment_type": "full-time",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -41564,8 +41960,8 @@
     "experience_years": "10+ years",
     "finance_area": true,
     "salary_currency": "USD",
-    "salary_max": 205000.0,
-    "salary_min": 180000.0,
+    "salary_max": 214000.0,
+    "salary_min": 188000.0,
     "workplace_type": ""
   },
   "asana:8369132": {
@@ -46640,6 +47036,50 @@
     "workplace_type": ""
   },
   "brex:8963009002": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "brex:8963608002": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "brex:8963609002": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "brex:8963610002": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "brex:8963611002": {
     "education_requirement": "",
     "employment_type": "",
     "experience_level": "",
@@ -54620,6 +55060,17 @@
     "experience_level": "",
     "experience_years": "",
     "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "datadog:8414434": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "3+ years",
+    "finance_area": false,
     "salary_currency": "",
     "salary_max": "",
     "salary_min": "",
@@ -72335,6 +72786,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "pinterest:8410813": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "7+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "plaid:027e260d-230b-4f7c-b145-dfade9d49bd6": {
     "education_requirement": "",
     "employment_type": "FullTime",
@@ -77538,6 +78000,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "reddit:8411910": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "8+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "reddit:8414836": {
     "education_requirement": "",
     "employment_type": "",
@@ -78825,6 +79298,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "robinhood:8331424": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "robinhood:8331571": {
     "education_requirement": "",
     "employment_type": "",
@@ -79127,6 +79611,17 @@
     "employment_type": "",
     "experience_level": "Experienced",
     "experience_years": "7+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "robinhood:8375545": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "8+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -79903,6 +80398,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "samsara:8038153": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "samsara:8039914": {
     "education_requirement": "Bachelor's degree",
     "employment_type": "",
@@ -79918,7 +80424,7 @@
     "education_requirement": "Bachelor's degree",
     "employment_type": "",
     "experience_level": "Experienced",
-    "experience_years": "6+ years",
+    "experience_years": "8+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -80403,6 +80909,17 @@
     "employment_type": "",
     "experience_level": "Experienced",
     "experience_years": "8+ years",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "samsara:8223369": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
     "finance_area": false,
     "salary_currency": "",
     "salary_max": "",
@@ -82092,6 +82609,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "samsara:8366794": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "samsara:8367418": {
     "education_requirement": "Bachelor's degree",
     "employment_type": "",
@@ -82229,6 +82757,17 @@
     "employment_type": "",
     "experience_level": "",
     "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "samsara:8386022": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "2+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -82592,6 +83131,39 @@
     "employment_type": "",
     "experience_level": "",
     "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "samsara:8417295": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "samsara:8417297": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "5+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "samsara:8417306": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "4+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -83010,6 +83582,17 @@
     "employment_type": "",
     "experience_level": "Experienced",
     "experience_years": "3+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "sofi:8197871003": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "4+ years",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -91673,6 +92256,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "stripe:8414067": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "stripe:8414351": {
     "education_requirement": "",
     "employment_type": "",
@@ -91717,6 +92311,17 @@
     "salary_min": "",
     "workplace_type": ""
   },
+  "stripe:8417067": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "2+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "stripe:8417785": {
     "education_requirement": "Bachelor's degree",
     "employment_type": "",
@@ -91733,6 +92338,17 @@
     "employment_type": "",
     "experience_level": "Experienced",
     "experience_years": "10+ years",
+    "finance_area": true,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "stripe:8419418": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "",
     "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
@@ -95501,6 +96117,17 @@
     "salary_min": 84640.0,
     "workplace_type": ""
   },
+  "twilio:8258573": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "",
+    "experience_years": "",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "twilio:8258581": {
     "education_requirement": "",
     "employment_type": "",
@@ -96051,6 +96678,17 @@
     "salary_min": 175120.0,
     "workplace_type": ""
   },
+  "twilio:8393933": {
+    "education_requirement": "Bachelor's degree",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "8+ years",
+    "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
   "twilio:8393935": {
     "education_requirement": "",
     "employment_type": "",
@@ -96167,6 +96805,17 @@
     "experience_level": "",
     "experience_years": "2+ years",
     "finance_area": false,
+    "salary_currency": "",
+    "salary_max": "",
+    "salary_min": "",
+    "workplace_type": ""
+  },
+  "twilio:8405811": {
+    "education_requirement": "",
+    "employment_type": "",
+    "experience_level": "Experienced",
+    "experience_years": "7+ years",
+    "finance_area": true,
     "salary_currency": "",
     "salary_max": "",
     "salary_min": "",
