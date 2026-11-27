@@ -1,184 +1,184 @@
 {
-  "run_time": "2026-11-26T21:34:50.734491Z",
+  "run_time": "2026-11-27T21:19:31.953185Z",
   "first_run_date": "2026-11-25",
-  "days_with_success": 2,
-  "open": 8826,
-  "new_today": 59,
-  "removed_today": 89,
+  "days_with_success": 3,
+  "open": 8794,
+  "new_today": 63,
+  "removed_today": 103,
   "sources": [
     {
       "name": "Ramp",
       "ok": true,
       "count": 183,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Notion",
       "ok": true,
       "count": 174,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "OpenAI",
       "ok": true,
       "count": 876,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Linear",
       "ok": true,
       "count": 30,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Stripe",
       "ok": true,
-      "count": 768,
-      "last_successful_run": "2026-11-26"
+      "count": 771,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Datadog",
       "ok": true,
-      "count": 391,
-      "last_successful_run": "2026-11-26"
+      "count": 390,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Coinbase",
       "ok": true,
       "count": 256,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Affirm",
       "ok": true,
-      "count": 216,
-      "last_successful_run": "2026-11-26"
+      "count": 218,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Toast",
       "ok": true,
-      "count": 300,
-      "last_successful_run": "2026-11-26"
+      "count": 298,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Twilio",
       "ok": true,
-      "count": 113,
-      "last_successful_run": "2026-11-26"
+      "count": 114,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Robinhood",
       "ok": true,
-      "count": 162,
-      "last_successful_run": "2026-11-26"
+      "count": 161,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Airbnb",
       "ok": true,
-      "count": 201,
-      "last_successful_run": "2026-11-26"
+      "count": 200,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Brex",
       "ok": true,
-      "count": 270,
-      "last_successful_run": "2026-11-26"
+      "count": 266,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Chime",
       "ok": true,
-      "count": 77,
-      "last_successful_run": "2026-11-26"
+      "count": 76,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Pinterest",
       "ok": true,
-      "count": 167,
-      "last_successful_run": "2026-11-26"
+      "count": 165,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Reddit",
       "ok": true,
       "count": 149,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Samsara",
       "ok": true,
-      "count": 298,
-      "last_successful_run": "2026-11-26"
+      "count": 292,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Asana",
       "ok": true,
       "count": 107,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Palantir",
       "ok": true,
       "count": 305,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "SoFi",
       "ok": true,
-      "count": 58,
-      "last_successful_run": "2026-11-26"
+      "count": 57,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Block",
       "ok": true,
       "count": 183,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Plaid",
       "ok": true,
       "count": 144,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Upstart",
       "ok": true,
       "count": 74,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "LendingTree",
       "ok": true,
       "count": 20,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Current",
       "ok": true,
       "count": 4,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Adyen",
       "ok": true,
-      "count": 234,
-      "last_successful_run": "2026-11-26"
+      "count": 233,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Webflow",
       "ok": true,
-      "count": 31,
-      "last_successful_run": "2026-11-26"
+      "count": 30,
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Marqeta",
       "ok": true,
       "count": 34,
-      "last_successful_run": "2026-11-26"
+      "last_successful_run": "2026-11-27"
     },
     {
       "name": "Amazon",
       "ok": true,
-      "count": 3001,
-      "last_successful_run": "2026-11-26"
+      "count": 2984,
+      "last_successful_run": "2026-11-27"
     }
   ]
 }
